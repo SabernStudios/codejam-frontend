@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Frontend Stuff:
+/register - Student registration page
+/submit - Project submission page
+/judge - Judge scoring page
+/admin - Admin dashboard
+/leaderboard - Results page 
+-->
+    <div class="register-competitor-info">
+
+        <h1>Register as a Competitor</h1>
+        <div class="register-competitior-box">
+            <label for="username">Enter your username (this can be your real name): </label> <br>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                required
+                placeholder="John Doe"
+                minlength="2"
+                maxlength="50"/>
+            
+            <br>
+            <br>
+            <br>
+
+            <label for="email">Enter your email (use your personal email, NOT your school email): </label> <br>
+            <input
+                type="email"
+                id="username"
+                name="username"
+                required
+                placeholder="you@example.com"/>
+            
+            <br>
+            <br>
+            <br>
+
+            <label for="grade">Enter your grade: </label> <br>
+            <select name="grade" id="grade">
+                <option value="9">9th</option>
+                <option value="10">10th</option>
+                <option value="11">11th</option>
+                <option value="12">12th</option>
+            </select>
+
+
+        </div>
+    </div>
+
+</body>
+</html>

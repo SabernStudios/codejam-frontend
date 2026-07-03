@@ -1,0 +1,96 @@
+.home-header{
+    display: flex;
+    align-items: center;
+}
+
+.header-site-name {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.header-nav a {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* Register Selection Page */
+.register-link{
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+.register-h1 {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 30px;
+}
+
+.register-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-selection div {
+    flex: none;
+    height: 400px;
+    width: 330px;
+    border-radius: 15px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 150px;
+    background-color:rgb(190, 190, 190);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.register-selection-images {
+    width: 270px;
+    height: 270px;
+    flex: none;
+}
+
+/* Register Competitor */
+.register-competitor-info {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.register-competitor-info div {
+    border-radius: 15px;
+    background-color:rgb(155, 155, 155);
+    padding: 40px;
+    width: 400px;
+    height: 500px;
+    text-align: left;
+    flex: none;
+}
+
+input[type="text"]{
+    width: 200px;
+    height: 30px;
+    font-size: 18px;
+    margin-top:8px;
+}
+
+input[type="email"]{
+    field-sizing: content;
+    width: 300px;
+    height: 30px;
+    font-size: 18px;
+    margin-top:8px;
+}
+
+#grade {
+    size:80px;
+    font-size: 15px;
+    margin-top:8px;
+}
