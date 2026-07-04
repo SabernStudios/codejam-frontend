@@ -52,9 +52,78 @@
                 <option value="12">12th</option>
             </select>
 
+            <br>
+            <br>
+            <br>
 
+            <label for="category">Team or individual: </label> <br>
+            <select name="category" id="category">
+                <option value="team">Team</option>
+                <option value="indiv">Individual</option>
+            </select>
+
+            <br>
+            <br>
+            <br>
+
+            <label for="password">Enter your password: </label> <br>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="At least 8 characters"
+                required
+                minlength="8"
+                maxlength="32"
+                autocomplete="current-password"
+            >
+
+            <br>
+            <br>
+
+            <label for="confirm-password">Confirm password: </label> <br>
+            <input 
+                type="password" 
+                id="confirm-password"  
+                placeholder="Confrim your password"
+                required
+                minlength="8"
+                maxlength="32"
+                autocomplete="current-password"
+            >
+
+            <script>                
+                const password = document.getElementById("password");
+                const confirmPassword = document.getElementById("confirm-password");
+
+                function passwordEqual() {
+                    if (password.value !== confirmPassword.value) {
+                        confirmPassword.setCustomValidity("Passwords do not match");
+                    } else {
+                        confirmPassword.setCustomValidity("");
+                    }
+                }
+
+                password.onchange = passwordEqual;
+                confirmPassword.onkeyup = passwordEqual;
+
+
+            </script>
         </div>
     </div>
+<!--  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirm_password");
 
+  function validatePassword() {
+    if (password.value !== confirmPassword.value) {
+      // Sets an error message, making the form invalid
+      confirmPassword.setCustomValidity("Passwords do not match");
+    } else {
+      // Clears the error, making the form valid
+      confirmPassword.setCustomValidity("");
+    }
+  }
+  password.onchange = validatePassword;
+  confirmPassword.onkeyup = validatePassword;-->
 </body>
 </html>
