@@ -85,7 +85,7 @@
             <input 
                 type="password" 
                 id="confirm-password"  
-                placeholder="Confrim your password"
+                placeholder="Confirm your password"
                 required
                 minlength="8"
                 maxlength="32"
@@ -106,24 +106,44 @@
 
                 password.onchange = passwordEqual;
                 confirmPassword.onkeyup = passwordEqual;
+            </script>
 
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <button><a onclick="teamOrIndiv()">Register</a></button>
+
+            <script>
+                function teamOrIndiv() {
+                    if (document.getElementById("category").value === "team") {
+                        window.location.href= "team-registration.html";
+                    } else {
+                        window.location.href= "home.html";
+                    }
+                }
 
             </script>
+
+
         </div>
     </div>
-<!--  const password = document.getElementById("password");
-  const confirmPassword = document.getElementById("confirm_password");
 
-  function validatePassword() {
-    if (password.value !== confirmPassword.value) {
-      // Sets an error message, making the form invalid
-      confirmPassword.setCustomValidity("Passwords do not match");
-    } else {
-      // Clears the error, making the form valid
-      confirmPassword.setCustomValidity("");
-    }
+<!--
+    <script>
+function redirectUser() {
+  // Example condition: Check if the current time is past 12:00 PM
+  let isAfternoon = new Date().getHours() >= 12;
+
+  if (isAfternoon) {
+    // Redirect to this URL if the condition is true
+    window.location.href = "https://example.com";
+  } else {
+    // Redirect to this URL if the condition is false
+    window.location.href = "https://example.com";
   }
-  password.onchange = validatePassword;
-  confirmPassword.onkeyup = validatePassword;-->
+}
+</script>-->
 </body>
 </html>
