@@ -64,7 +64,7 @@
     flex-direction: column;
 }
 
-.register-competitor-info div {
+.register-competitor-info > div {
     border-radius: 15px;
     background-color:rgb(155, 155, 155);
     padding: 40px;
@@ -73,6 +73,10 @@
     text-align: left;
     align-items: center;
     flex: none;
+}
+
+#team-names-and-grades {
+    margin-bottom: 0px;
 }
 
 input[type="text"], input[type="password"]{

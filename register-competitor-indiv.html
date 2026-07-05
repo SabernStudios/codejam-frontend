@@ -7,24 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Frontend Stuff:
-/register - Student registration page
-/submit - Project submission page
-/judge - Judge scoring page
-/admin - Admin dashboard
-/leaderboard - Results page 
--->
     <div class="register-competitor-info">
 
         <h1>Register as a Competitor</h1>
         <div class="register-competitior-box">
-            <label for="username">Enter your username (this can be your real name): </label> <br>
+            <label for="name">Enter your name: </label> <br>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="John Doe"
+                minlength="2"
+                maxlength="50"/>
+            
+            <br>
+            <br>
+            <br>
+
+            <label for="username">Enter your username: </label> <br>
             <input
                 type="text"
                 id="username"
                 name="username"
                 required
-                placeholder="John Doe"
+                placeholder="JDoe1234"
                 minlength="2"
                 maxlength="50"/>
             
@@ -50,16 +57,6 @@
                 <option value="10">10th</option>
                 <option value="11">11th</option>
                 <option value="12">12th</option>
-            </select>
-
-            <br>
-            <br>
-            <br>
-
-            <label for="category">Team or individual: </label> <br>
-            <select name="category" id="category">
-                <option value="team">Team</option>
-                <option value="indiv">Individual</option>
             </select>
 
             <br>
@@ -129,21 +126,5 @@
 
         </div>
     </div>
-
-<!--
-    <script>
-function redirectUser() {
-  // Example condition: Check if the current time is past 12:00 PM
-  let isAfternoon = new Date().getHours() >= 12;
-
-  if (isAfternoon) {
-    // Redirect to this URL if the condition is true
-    window.location.href = "https://example.com";
-  } else {
-    // Redirect to this URL if the condition is false
-    window.location.href = "https://example.com";
-  }
-}
-</script>-->
 </body>
 </html>
