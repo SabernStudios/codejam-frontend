@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="home-header">
+        <h1 class="header-site-name">CodeJam</h1>
+        <nav class="header-nav">
+            <a href="submit.html">Submit</a>
+            <a href="leaderboard.html">Leaderboard<a>
+        </nav>
+        <button class="register-link"><a href="register-selection.html">Register</a></button>
+    </header>
+
+    <div class="submit-space">
+        <h1 class="large-text">Submit</h1>
+        <label for="githublink">Enter your GitHub repository link: </label>
+        <input
+            type="text"
+            id="github-link"
+            name="githublink"
+            required
+            placeholder="https://github.com/astran123258/example-repo"
+            minlength="2"
+            maxlength="100"/>
+        
+        <script>
+            const input = document.getElementById("github-link");
+
+            function handleInput() {
+                const newLength = Math.max(input.value.length + 1, 38.2);
+                input.style.width = newLength + "ch";
+            }
+            input.addEventListener("input", handleInput);
+        </script>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <button><a href="home.html">Submit</a></button>
+
+    </div>
+</body>
+</html>
