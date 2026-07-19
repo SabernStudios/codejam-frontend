@@ -20,7 +20,7 @@
                     required
                     placeholder="Team member name"
                     minlength="2"
-                    maxlength="50"/> 
+                    maxlength="39"/> 
                 <select name="grade" id="grade">
                     <option value="9">9th</option>
                     <option value="10">10th</option>
@@ -54,6 +54,16 @@
                         amountPressed--;
                     }
                 }
+
+                var teamFieldsContainer = document.querySelector(".team-member-fields").parentElement;
+
+                function handleTeamInput(event) {
+                    if (event.target.matches('input[type="text"]')) {
+                        var newLength = Math.max(event.target.value.length + 1, 20);
+                        event.target.style.width = newLength + "ch";
+                    }
+                }
+                teamFieldsContainer.addEventListener("input", handleTeamInput);
             </script>
 
             <br>
@@ -66,7 +76,20 @@
                 id="teamname"
                 name="teamname"
                 required
+                maxlength="39"
                 placeholder="Short Circuit"/>
+
+            <script>
+                const input2 = document.getElementById("teamname");
+
+                function handleInput() {
+                    const newLength = Math.max(input2.value.length + 1, 20);
+                    input2.style.width = newLength + "ch";
+                }
+
+                input2.addEventListener("input", handleInput);
+            </script>
+
             <br>
             <br>
             <br>
@@ -77,7 +100,19 @@
                 id="email"
                 name="email"
                 required
+                maxlength="39"
                 placeholder="you@example.com"/>
+
+            <script>
+                const input3 = document.getElementById("email");
+
+                function handleInput() {
+                    const newLength = Math.max(input3.value.length + 1, 20);
+                    input3.style.width = newLength + "ch";
+                }
+
+                input3.addEventListener("input", handleInput);
+            </script>
             
             <br>
             <br>
@@ -91,9 +126,20 @@
                 placeholder="At least 8 characters"
                 required
                 minlength="8"
-                maxlength="32"
+                maxlength="39"
                 autocomplete="current-password"
             >
+
+            <script>
+                const input4 = document.getElementById("password");
+
+                function handleInput() {
+                    const newLength = Math.max(input4.value.length + 1, 20);
+                    input4.style.width = newLength + "ch";
+                }
+
+                input4.addEventListener("input", handleInput);
+            </script>
 
             <br>
             <br>
@@ -102,14 +148,24 @@
             <input 
                 type="password" 
                 id="confirm-password"  
+                name="confirm-password"
                 placeholder="Confirm your password"
                 required
                 minlength="8"
-                maxlength="32"
+                maxlength="39"
                 autocomplete="current-password"
             >
 
-            <script>                
+            <script>
+                const input5 = document.getElementById("confirm-password");
+
+                function handleInput() {
+                    const newLength = Math.max(input5.value.length + 1, 20);
+                    input5.style.width = newLength + "ch";
+                }
+
+                input5.addEventListener("input", handleInput);
+            
                 const password = document.getElementById("password");
                 const confirmPassword = document.getElementById("confirm-password");
 
@@ -130,20 +186,7 @@
             <br>
             <br>
 
-            <button><a onclick="teamOrIndiv()">Register</a></button>
-
-            <script>
-                function teamOrIndiv() {
-                    if (document.getElementById("category").value === "team") {
-                        window.location.href= "team-registration.html";
-                    } else {
-                        window.location.href= "home.html";
-                    }
-                }
-
-            </script>
-
-
+            <button><a href="home.html">Register</a></button>
         </div>
     </div>
 </body>
