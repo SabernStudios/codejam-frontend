@@ -8,6 +8,11 @@
     margin-right: 100px;
 }
 
+.header-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .header-nav a {
     margin-left: 20px;
     margin-right: 20px;
