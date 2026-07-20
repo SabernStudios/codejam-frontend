@@ -84,7 +84,7 @@
     margin-bottom: 0px;
 }
 
-input[type="text"], input[type="password"]{
+.name-input, input[type="password"]{
     width: 200px;
     height: 30px;
     font-size: 18px;
@@ -109,6 +109,45 @@ input[type="email"]{
     border-color: #dc3545;
     background-color: #fff5f5;
     outline-color: #dc3545;
+}
+
+/* Verification page */
+.verification {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+}
+
+.verification > div {
+    border-radius: 15px;
+    background-color:rgb(155, 155, 155);
+    margin-top: 150px;
+    padding: 40px;
+    width: 450px;
+    height: 500px;
+    text-align: left;
+    align-items: center;
+    flex: none;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.verification .verification-box > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.verification-input {
+    width: 3ch;
+    height: 4ch;
+    margin: 10px;
+    font-size: 30px;
+    text-align: center;
 }
 
 /* Submit code */
