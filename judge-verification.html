@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="verification">
+        <div class="verification-box">
+            <p>If you asked us to be a judge (and we said yes), you should've recieved a verification code in your email.</p>
+            <h2>Enter verification code:</h2>
+            <div class="otp-container">
+                <input class="verification-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required />
+                <input class="verification-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required />
+                <input class="verification-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required />
+                <input class="verification-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required />
+                <input class="verification-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" required />
+                <br>
+                <script>
+                    var otpContainer = document.querySelector(".otp-container");
+
+                    function handleOTPInput(event) {
+                        if (!event.target.matches(".verification-input")) {
+                            return;
+                        }
+
+                        var currentInput = event.target;
+
+                        if (currentInput.value.length === 1) {
+                            var nextInput = currentInput.nextElementSibling;
+                            if (nextInput) {
+                                nextInput.focus();
+                            }
+                        }
+                    }
+
+                    function handleOTPKeyDown(event) {
+                        if (!event.target.matches(".verification-input")) {
+                            return;
+                        }
+
+                        if (event.key === "Backspace" && event.target.value === "") {
+                            var previousInput = event.target.previousElementSibling;
+                            if (previousInput) {
+                                previousInput.focus();
+                            }
+                        }
+                    }
+
+                    otpContainer.addEventListener("input", handleOTPInput);
+                    otpContainer.addEventListener("keydown", handleOTPKeyDown);
+                </script>
+            </div>
+            <p>Didn't see the code in your inbox? Check spam messages or <strong>resend the code</strong></p>
+
+            <br>
+            <br>
+            <br>
+
+            <button><a href="register-judge.html">Continue</a></button>
+        </div>
+    </div>
+</body>
+</html>
