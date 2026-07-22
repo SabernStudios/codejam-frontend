@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.big-text {
+    font-size: 100px;
+    margin-bottom: 20px
+}
+
 .header-site-name {
     margin-left: 100px;
     margin-right: 100px;
@@ -146,6 +151,28 @@ input[type="email"]{
     background-color: #fff5f5;
     outline-color: #dc3545;
 }
+
+/* Sign in page */
+.sign-in-info {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.sign-in-info > div {
+    border-radius: 15px;
+    background-color:rgb(155, 155, 155);
+    padding: 40px;
+    width: 300px;
+    height: 300px;
+    text-align: left;
+    align-items: center;
+    flex: none;
+}
+
 
 /* Verification page */
 .verification {
