@@ -228,6 +228,14 @@ input[type="email"]{
     align-items: center;
 }
 
+#description {
+    width: 382px;
+    height: 100px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
 #github-link {
     width: 382px;
     min-width: 382px;

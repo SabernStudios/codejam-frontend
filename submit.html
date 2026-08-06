@@ -17,24 +17,86 @@
 
     <div class="submit-space">
         <h1 class="large-text">Submit</h1>
-        <label for="githublink">Enter your GitHub repository link: </label>
+        <label for="project_title">Enter your project title:</label> <br>
         <input
             type="text"
-            id="github-link"
-            name="githublink"
+            id="project-title"
+            name="project_title"
+            required
+            placeholder="Study Timer"
+            minlength="2"
+            maxlength="100"/>
+
+        <br>
+        <br>
+
+        <script>
+            var input4 = document.getElementById("project-title");
+
+            function handleInput() {
+                var newLength = Math.max(input4.value.length + 1, 38.2);
+                input4.style.width = newLength + "ch";
+            }
+            input4.addEventListener("input", handleInput);
+            handleInput();
+        </script>
+
+        <label for="description">Enter a short description (300 chracters max):</label> <br>
+        <textarea
+            type="text"
+            id="description"
+            name="description"
+            required
+            placeholder="A Pomodoro timer for students."
+            rows="4"
+            minlength="20"
+            maxlength="300"></textarea>
+
+        <br>
+        <br>
+
+        <label for="project-url">Enter your project link, if you have a website for it (optional):</label> <br>
+        <input
+            type="text"
+            id="project-url"
+            name="project_url"
+            placeholder="https://example.com"
+            minlength="2"
+            maxlength="100"/>
+
+        <br>
+        <br>
+
+        <script>
+            var input2 = document.getElementById("project-url");
+
+            function handleInput() {
+                var newLength = Math.max(input2.value.length + 1, 38.2);
+                input2.style.width = newLength + "ch";
+            }
+            input2.addEventListener("input", handleInput);
+            handleInput();
+        </script>
+
+        <label for="github-url">Enter your GitHub repository link: </label> <br>
+        <input
+            type="text"
+            id="github-url"
+            name="github_url"
             required
             placeholder="https://github.com/astran123258/example-repo"
             minlength="2"
             maxlength="100"/>
         
         <script>
-            const input = document.getElementById("github-link");
+            var input = document.getElementById("github-url");
 
             function handleInput() {
-                const newLength = Math.max(input.value.length + 1, 38.2);
+                var newLength = Math.max(input.value.length + 1, 38.2);
                 input.style.width = newLength + "ch";
             }
             input.addEventListener("input", handleInput);
+            handleInput();
         </script>
 
         <br>
