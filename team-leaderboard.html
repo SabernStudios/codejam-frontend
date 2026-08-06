@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="home-header">
+        <h1 class="header-site-name"><a class="header-link" href="home-signedin.html">CodeJam</a></h1>
+        <nav class="header-nav">
+            <a href="submit.html">Submit</a>
+            <a href="leaderboard.html">Leaderboard<a>
+        </nav>
+        <button class="register-link"><a href="register-selection.html">Register</a></button>
+    </header>
+    <div class="leaderboard-space">
+        <h1 class="large-text">Leaderboard</h1>
+        <div class="team-indiv-selector">
+            <button class="selection-button"><a href="team-leaderboard.html">Team</a></button>
+            <button class="selection-button"><a href="indiv-leaderboard.html">Indiv</a></button>
+        </div>
+        <label for="sort-by">Sort by...: </label> <br>
+        <select name="sort-by" id="sort-by">
+            <option value="likes">Likes (default)</option>
+            <option value="teamName">Team Name (A-Z)</option>
+            <option value="projName">Project Name (A-Z)</option>
+            <option value="recent">Recent</option>
+            <option value="old">Old</option>
+        </select>
+        <div class="leaderboard-categories">
+            <h3 id="cat-team-name">Team name</h3>
+            <h3 id="cat-proj-name">Project name</h3>
+            <h3 id="cat-likes">Likes</h3>
+        </div>
+    </div>
+
+</body>
+</html>
