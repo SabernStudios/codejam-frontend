@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="border-glow.js" defer></script>
+</head>
+<body class="rules-body">
+    <header class="home-header">
+        <h1 class="header-site-name"><a class="header-link" href="home.html">CodeJam</a></h1>
+        <nav class="header-nav">
+            <a href="team-leaderboard.html">Leaderboard</a>
+            <a href="about.html">About Us</a>
+            <a href="rules.html">Rules</a>
+        </nav>
+    </header>
+
+    <h1 class="large-text">Rules</h1>
+    <div class="rules-full">
+        <div class="border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <button class="rule-toggle" type="button" aria-expanded="false" aria-controls="theme-details">
+                    Theme
+                </button>
+
+                <div class="rule-details" id="theme-details" hidden>
+                    <ol>
+                        <li>Our theme is [undecided]</li>
+                        <li>Be as literal or figurative as you want with your interpretation of the theme when coding!</li>
+                        <li>Though, if we are having trouble figuring out where that theme is in your project, we may have to come in on an available date and ask you some clarifying questions.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <button class="rule-toggle" type="button" aria-expanded="false" aria-controls="submission-details">
+                    Submission
+                </button>
+
+                <div class="rule-details" id="submission-details" hidden>
+                    <ol>
+                        <li>You can submit your code in pretty much any text-based language.</li>
+                        <li>Create a GitHub account and post your code there (make sure we can see it!), then post the link when submitting. </li>
+                        <li>Put thought into your description! To get an idea of what your submission is, we will be reading those descriptions.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <button class="rule-toggle" type="button" aria-expanded="false" aria-controls="scoring-details">
+                    Scoring
+                </button>
+
+                <div class="rule-details" id="scoring-details" hidden>
+                    <ol>
+                        <li>You will be graded on: Creativity, Technical effort, Presentation, Enjoyment, and User Experience (User experience, especially, will be important to judges (prioritize it in your later stages of development!))</li>
+                        <li>Team submissions will be subject to harsher grading.</li>
+                        <li>We will be disqualifying any and all vibecoded work (and we WILL publicly shame you).</li>
+                        <li>If your submission reaches top three, and one or more of the judges suspect AI overuse, we will ask you to come in on an available date and explain your code to us. If you only used AI for assistance, however, you will be fine (usually).</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setupDropdowns() {
+            const buttons = document.querySelectorAll('.rule-toggle');
+
+            buttons.forEach(function(button) {
+            const detailsId = button.getAttribute('aria-controls');
+            const details = document.getElementById(detailsId);
+
+            if (!details) {
+                console.error('Cannot find dropdown with id:', detailsId);
+                return;
+            }
+
+            button.addEventListener('click', function() {
+                const isOpen =
+                button.getAttribute('aria-expanded') === 'true';
+
+                button.setAttribute('aria-expanded', String(!isOpen));
+                details.hidden = isOpen;
+            });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupDropdowns);
+        } else {
+            setupDropdowns();
+        }
+    </script>
+</body>
+</html>

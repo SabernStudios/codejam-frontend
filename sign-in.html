@@ -5,69 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="border-glow.js" defer></script>
 </head>
 <body>
     <div class="sign-in-info">
         <h1 class="big-text">Sign in</h1>
         <p>Don't have an account yet? <a href="register-selection.html">Sign up</a></p>
-        <div class="sign-in-box">
-            <label for="name">Enter your username/teamname: </label> <br>
-            <input
-                class="name-input"
-                type="text"
-                id="username"
-                name="username"
-                required
-                placeholder="JDoe1234"
-                minlength="2"
-                maxlength="39"/>
-            
-            <script>
-                var input = document.getElementById("username");
+        <div class="sign-in-box border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <label for="name">Enter your username/teamname: </label> <br>
+                <input
+                    class="name-input text-fields"
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                    placeholder="JDoe1234"
+                    minlength="2"
+                    maxlength="39"/>
+                
+                <script>
+                    var input = document.getElementById("username");
 
-                function handleInput() {
-                    var newLength = Math.max(input.value.length + 1, 20);
-                    newLength = Math.min(newLength, 30);
-                    input.style.width = newLength + "ch";
-                }
-                input.addEventListener("input", handleInput);
-            </script>
+                    function handleInput() {
+                        var newLength = Math.max(input.value.length + 1, 20);
+                        newLength = Math.min(newLength, 30);
+                        input.style.width = newLength + "ch";
+                    }
+                    input.addEventListener("input", handleInput);
+                </script>
 
-            <br>
-            <br>
-            <br>
+                <br>
+                <br>
+                <br>
 
-            <label for="password">Enter your password: </label> <br>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                placeholder="At least 8 characters"
-                required
-                minlength="8"
-                maxlength="39"
-                autocomplete="current-password"
-            >
+                <label for="password">Enter your password: </label> <br>
+                <input 
+                    type="password" 
+                    class="text-fields"
+                    id="password" 
+                    name="password" 
+                    placeholder="At least 8 characters"
+                    required
+                    minlength="8"
+                    maxlength="39"
+                    autocomplete="current-password"
+                >
 
-            <script>
-                const input4 = document.getElementById("password");
+                <script>
+                    const input4 = document.getElementById("password");
 
-                function handleInput() {
-                    const newLength = Math.max(input4.value.length + 1, 20);
-                    newLength = Math.min(newLength, 30);
-                    input4.style.width = newLength + "ch";
-                }
+                    function handleInput() {
+                        const newLength = Math.max(input4.value.length + 1, 20);
+                        newLength = Math.min(newLength, 30);
+                        input4.style.width = newLength + "ch";
+                    }
 
-                input4.addEventListener("input", handleInput);
-            </script>
+                    input4.addEventListener("input", handleInput);
+                </script>
 
-            <br>
-            <br>
-            <br>
-            <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
-            <button><a href="home-signedin.html">Sign in</a></button>
+                <button class="sign-in-button button-styling"><a href="home-signedin.html">Sign in</a></button>
+            </div>
         </div>
+        
         <p>Forgot your password? Click this link</p>
     </div>
 </body>

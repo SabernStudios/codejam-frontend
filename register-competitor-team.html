@@ -5,190 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="border-glow.js" defer></script>
 </head>
 <body>
     <div class="register-competitor-info">
+        <h1 class="register-title">Register as a Team</h1>
+        <div class="border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <div id="register-competitor-box">
+                    <p id="team-names-and-grades">Enter your team names and grades (up to 4):</p>
+                    <div class="team-member-fields">
+                        <input
+                            class="name-input"
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            placeholder="Team member name"
+                            minlength="2"
+                            maxlength="39"/> 
+                        <select name="grade" id="grade">
+                            <option value="9">9th</option>
+                            <option value="10">10th</option>
+                            <option value="11">11th</option>
+                            <option value="12">12th</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="addField()">+</button>
+                    <button type="button" onclick="removeField()">-</button>
+                    
+                    <script>
+                        let amountPressed = 1;
+                        function addField() {
+                            if (amountPressed < 4) {
+                                const firstRow = document.querySelector(".team-member-fields");
+                                const newRow = firstRow.cloneNode(true);
+                                
+                                newRow.querySelector("input").value = "";
+                                newRow.querySelector("select").value = "9";
+                                
+                                const rows = document.querySelectorAll(".team-member-fields");
+                                rows[rows.length - 1].after(newRow);
 
-        <h1>Register as a Team</h1>
-        <div id="register-competitor-box">
-            <p id="team-names-and-grades">Enter your team names and grades (up to 4):</p>
-            <div class="team-member-fields">
-                <input
-                    class="name-input"
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="Team member name"
-                    minlength="2"
-                    maxlength="39"/> 
-                <select name="grade" id="grade">
-                    <option value="9">9th</option>
-                    <option value="10">10th</option>
-                    <option value="11">11th</option>
-                    <option value="12">12th</option>
-                </select>
+                                amountPressed++;
+                            }
+                        }
+                        function removeField() {
+                            if (amountPressed > 1) {                        
+                                const rows = document.querySelectorAll(".team-member-fields");
+                                rows[rows.length - 1].remove();
+                                amountPressed--;
+                            }
+                        }
+
+                        var teamFieldsContainer = document.querySelector(".team-member-fields").parentElement;
+
+                        function handleTeamInput(event) {
+                            if (event.target.matches('input[type="text"]')) {
+                                var newLength = Math.max(event.target.value.length + 1, 20);
+                                event.target.style.width = newLength + "ch";
+                            }
+                        }
+                        teamFieldsContainer.addEventListener("input", handleTeamInput);
+                    </script>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <label for="teamname">Enter your team name: </label> <br>
+                    <input
+                        class="name-input"
+                        type="text"
+                        id="teamname"
+                        name="team_name"
+                        required
+                        maxlength="39"
+                        placeholder="ex: Short Circuit"/>
+
+                    <script>
+                        const input2 = document.getElementById("teamname");
+
+                        function handleInput() {
+                            const newLength = Math.max(input2.value.length + 1, 20);
+                            input2.style.width = newLength + "ch";
+                        }
+
+                        input2.addEventListener("input", handleInput);
+                    </script>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <label for="email">Enter one of your team member's email (use your personal email, NOT your school email): </label> <br>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        maxlength="39"
+                        placeholder="you@example.com"/>
+
+                    <script>
+                        const input3 = document.getElementById("email");
+
+                        function handleInput() {
+                            const newLength = Math.max(input3.value.length + 1, 20);
+                            input3.style.width = newLength + "ch";
+                        }
+
+                        input3.addEventListener("input", handleInput);
+                    </script>
+                    
+                    <br>
+                    <br>
+                    <br>
+                
+                    <label for="password">Enter your password: </label> <br>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="At least 8 characters"
+                        required
+                        minlength="8"
+                        maxlength="39"
+                        autocomplete="current-password"
+                    >
+
+                    <script>
+                        const input4 = document.getElementById("password");
+
+                        function handleInput() {
+                            const newLength = Math.max(input4.value.length + 1, 20);
+                            input4.style.width = newLength + "ch";
+                        }
+
+                        input4.addEventListener("input", handleInput);
+                    </script>
+
+                    <br>
+                    <br>
+
+                    <label for="confirm-password">Confirm password: </label> <br>
+                    <input 
+                        type="password" 
+                        id="confirm-password"  
+                        name="confirm-password"
+                        placeholder="Confirm your password"
+                        required
+                        minlength="8"
+                        maxlength="39"
+                        autocomplete="current-password"
+                    >
+
+                    <script>
+                        const input5 = document.getElementById("confirm-password");
+
+                        function handleInput() {
+                            const newLength = Math.max(input5.value.length + 1, 20);
+                            input5.style.width = newLength + "ch";
+                        }
+
+                        input5.addEventListener("input", handleInput);
+                    
+                        const password = document.getElementById("password");
+                        const confirmPassword = document.getElementById("confirm-password");
+
+                        function passwordEqual() {
+                            if (password.value !== confirmPassword.value) {
+                                confirmPassword.setCustomValidity("Passwords do not match");
+                            } else {
+                                confirmPassword.setCustomValidity("");
+                            }
+                        }
+
+                        password.onchange = passwordEqual;
+                        confirmPassword.onkeyup = passwordEqual;
+                    </script>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <button class="register-button button-styling"><a href="email-verification.html">Register</a></button>
+                </div>
             </div>
-            <button type="button" onclick="addField()">+</button>
-            <button type="button" onclick="removeField()">-</button>
-            
-            <script>
-                let amountPressed = 1;
-                function addField() {
-                    if (amountPressed < 4) {
-                        const firstRow = document.querySelector(".team-member-fields");
-                        const newRow = firstRow.cloneNode(true);
-                        
-                        newRow.querySelector("input").value = "";
-                        newRow.querySelector("select").value = "9";
-                        
-                        const rows = document.querySelectorAll(".team-member-fields");
-                        rows[rows.length - 1].after(newRow);
-
-                        amountPressed++;
-                    }
-                }
-                function removeField() {
-                    if (amountPressed > 1) {                        
-                        const rows = document.querySelectorAll(".team-member-fields");
-                        rows[rows.length - 1].remove();
-                        amountPressed--;
-                    }
-                }
-
-                var teamFieldsContainer = document.querySelector(".team-member-fields").parentElement;
-
-                function handleTeamInput(event) {
-                    if (event.target.matches('input[type="text"]')) {
-                        var newLength = Math.max(event.target.value.length + 1, 20);
-                        event.target.style.width = newLength + "ch";
-                    }
-                }
-                teamFieldsContainer.addEventListener("input", handleTeamInput);
-            </script>
-
-            <br>
-            <br>
-            <br>
-
-            <label for="teamname">Enter your team name: </label> <br>
-            <input
-                class="name-input"
-                type="text"
-                id="teamname"
-                name="team_name"
-                required
-                maxlength="39"
-                placeholder="Short Circuit"/>
-
-            <script>
-                const input2 = document.getElementById("teamname");
-
-                function handleInput() {
-                    const newLength = Math.max(input2.value.length + 1, 20);
-                    input2.style.width = newLength + "ch";
-                }
-
-                input2.addEventListener("input", handleInput);
-            </script>
-
-            <br>
-            <br>
-            <br>
-
-            <label for="email">Enter one of your team member's email (use your personal email, NOT your school email): </label> <br>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                maxlength="39"
-                placeholder="you@example.com"/>
-
-            <script>
-                const input3 = document.getElementById("email");
-
-                function handleInput() {
-                    const newLength = Math.max(input3.value.length + 1, 20);
-                    input3.style.width = newLength + "ch";
-                }
-
-                input3.addEventListener("input", handleInput);
-            </script>
-            
-            <br>
-            <br>
-            <br>
-          
-            <label for="password">Enter your password: </label> <br>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                placeholder="At least 8 characters"
-                required
-                minlength="8"
-                maxlength="39"
-                autocomplete="current-password"
-            >
-
-            <script>
-                const input4 = document.getElementById("password");
-
-                function handleInput() {
-                    const newLength = Math.max(input4.value.length + 1, 20);
-                    input4.style.width = newLength + "ch";
-                }
-
-                input4.addEventListener("input", handleInput);
-            </script>
-
-            <br>
-            <br>
-
-            <label for="confirm-password">Confirm password: </label> <br>
-            <input 
-                type="password" 
-                id="confirm-password"  
-                name="confirm-password"
-                placeholder="Confirm your password"
-                required
-                minlength="8"
-                maxlength="39"
-                autocomplete="current-password"
-            >
-
-            <script>
-                const input5 = document.getElementById("confirm-password");
-
-                function handleInput() {
-                    const newLength = Math.max(input5.value.length + 1, 20);
-                    input5.style.width = newLength + "ch";
-                }
-
-                input5.addEventListener("input", handleInput);
-            
-                const password = document.getElementById("password");
-                const confirmPassword = document.getElementById("confirm-password");
-
-                function passwordEqual() {
-                    if (password.value !== confirmPassword.value) {
-                        confirmPassword.setCustomValidity("Passwords do not match");
-                    } else {
-                        confirmPassword.setCustomValidity("");
-                    }
-                }
-
-                password.onchange = passwordEqual;
-                confirmPassword.onkeyup = passwordEqual;
-            </script>
-
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <button><a href="email-verification.html">Register</a></button>
         </div>
     </div>
 </body>

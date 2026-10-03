@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="border-glow.js" defer></script>
 </head>
 <body>
     <div class="register-h1">
@@ -13,15 +14,21 @@
 
     <div class="register-selection">
         <a href="is-competitor-teamed.html">
-            <div>
-                <img class="register-selection-images" src="assets/landscape-placeholder-svgrepo-com.png">
-                <h1 class="register-selection-option">Competitor</h1>
+            <div class="border-glow-card" data-animated="true">
+                <span class="edge-light" aria-hidden="true"></span>
+                <div class="border-glow-inner">
+                    <img class="register-selection-images" src="assets/landscape-placeholder-svgrepo-com.png">
+                    <h1 class="register-selection-option">Competitor</h1>
+                </div>
             </div>
         </a>
         <a href="judge-verification.html">
-            <div>
-                <img class="register-selection-images" src="assets/landscape-placeholder-svgrepo-com.png">
-                <h1 class="register-selection-option">Judge</h1>
+            <div class="border-glow-card" data-animated="true">
+                <span class="edge-light" aria-hidden="true"></span>
+                <div class="border-glow-inner">
+                    <img class="register-selection-images" src="assets/landscape-placeholder-svgrepo-com.png">
+                    <h1 class="register-selection-option">Judge</h1>
+                </div>
             </div>
         </a>
     </div>

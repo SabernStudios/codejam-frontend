@@ -4,25 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <script src="particle-text.js" defer></script>
 </head>
 <body class="home-body">
     <header class="home-header">
         <h1 class="header-site-name"><a class="header-link" href="home.html">CodeJam</a></h1>
         <nav class="header-nav">
-            <a href="team-leaderboard.html">Leaderboard<a>
+            <a href="team-leaderboard.html">Leaderboard</a>
             <a href="about.html">About Us</a>
+            <a href="rules.html">Rules</a>
         </nav>
-        <button class="register-link"><a href="sign-in.html">Sign in</a></button>
+        <a class="register-link" href="sign-in.html">Sign in</a>
     </header>
     <div class="home-segment-one">
-        <div class="home-sub1">
-            <h1 class="title-text">CodeJam</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur, ipsum vel dapibus consequat, mi eros blandit mi, id tempus nulla quam eu mauris. Aenean nec mattis tortor. Donec lacus nunc, rutrum in elit quis, efficitur iaculis dolor. In ornare, elit et volutpat elementum, ante sem egestas nisl, vitae finibus lacus mauris vitae nisi. Pellentesque dignissim ac turpis et consequat. Sed in euismod nisl. Maecenas mollis sit amet libero ut convallis.</p>
-        </div>
-        <div>
-            <img src="assets/landscape-placeholder-svgrepo-com.png" height="400">
-        </div>
+        <h1 class="big-title-text particle-text" data-text="CodeJam">
+            <span class="particle-text__label">CodeJam</span>
+            <canvas aria-hidden="true"></canvas>
+        </h1>
     </div>
+    <div class="home-segment-two">
+        <h1 id="countdown-text">Theme Reveal Countdown</h1> 
+        <p id="countdown" role="timer"></p>
+    </div>
+    <script>
+        var deadline = new Date("2026-10-13T14:50:00-05:00").getTime();
+        var countdown = document.getElementById("countdown");
+
+        function updateCountdown() {
+            var remaining = deadline - Date.now();
+
+            if (remaining <= 0) {
+            countdown.textContent = "Submissions are closed!";
+            clearInterval(countdownInterval);
+            return;
+            }
+
+            var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+            var minutes = Math.floor((remaining / (1000 * 60)) % 60);
+            var seconds = Math.floor((remaining / 1000) % 60);
+
+            countdown.textContent =
+            days + "d " +
+            hours + "h " +
+            minutes + "m " +
+            seconds + "s";
+        }
+
+        var countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>

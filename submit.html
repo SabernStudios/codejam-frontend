@@ -11,11 +11,12 @@
         <h1 class="header-site-name"><a class="header-link" href="home-signedin.html">CodeJam</a></h1>
         <nav class="header-nav">
             <a href="submit.html">Submit</a>
-            <a href="team-leaderboard.html">Leaderboard<a>
+            <a href="team-leaderboard.html">Leaderboard</a>
+            <a href="rules.html">Rules</a>
         </nav>
     </header>
 
-    <div class="submit-space">
+    <form class="submit-space" id="project-form">
         <h1 class="large-text">Submit</h1>
         <label for="project_title">Enter your project title:</label> <br>
         <input
@@ -57,6 +58,7 @@
 
         <label for="grade">App Category: </label> <br>
             <select name="category" id="category">
+                <option value="blank">----------</option>
                 <option value="productivity">Productivity</option>
                 <option value="study">Study</option>
                 <option value="education">Education</option>
@@ -116,17 +118,18 @@
         </script>
 
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
-        <button><a href="home.html">Submit</a></button>
 
-    </div>
+        <button class="button-styling" type="submit">Submit</button>
+
+        <script>
+            var projectForm = document.getElementById("project-form");
+
+            projectForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                window.location.href = "home-signedin.html";
+            });
+        </script>
+    </form>
 </body>
 </html>

@@ -5,169 +5,175 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="border-glow.js" defer></script>
 </head>
 <body>
     <div class="register-competitor-info">
+        <h1 class="register-title">Register as a Competitor</h1>
+        <div class="border-glow-card" data-animated="true">
+            <span class="edge-light" aria-hidden="true"></span>
+            <div class="border-glow-inner">
+                <div class="register-competitior-box">
+                    <label for="name">Enter your name: </label> <br>
+                    <input
+                        class="name-input"
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="John Doe"
+                        minlength="2"
+                        maxlength="39"/>
+                    
+                    <script>
+                        const input = document.getElementById("name");
 
-        <h1>Register as a Competitor</h1>
-        <div class="register-competitior-box">
-            <label for="name">Enter your name: </label> <br>
-            <input
-                class="name-input"
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="John Doe"
-                minlength="2"
-                maxlength="39"/>
-            
-            <script>
-                const input = document.getElementById("name");
+                        function handleInput() {
+                            const newLength = Math.max(input.value.length + 1, 20);
+                            input.style.width = newLength + "ch";
+                        }
+                        input.addEventListener("input", handleInput);
+                    </script>
 
-                function handleInput() {
-                    const newLength = Math.max(input.value.length + 1, 20);
-                    input.style.width = newLength + "ch";
-                }
-                input.addEventListener("input", handleInput);
-            </script>
+                    <br>
+                    <br>
+                    <br>
 
-            <br>
-            <br>
-            <br>
+                    <label for="username">Enter your username: </label> <br>
+                    <input
+                        class="name-input"
+                        type="text"
+                        id="username"
+                        name="user_name"
+                        required
+                        placeholder="JDoe1234"
+                        minlength="2"
+                        maxlength="39"/>
+                    
+                    <script>
+                        const input2 = document.getElementById("username");
 
-            <label for="username">Enter your username: </label> <br>
-            <input
-                class="name-input"
-                type="text"
-                id="username"
-                name="user_name"
-                required
-                placeholder="JDoe1234"
-                minlength="2"
-                maxlength="39"/>
-            
-            <script>
-                const input2 = document.getElementById("username");
+                        function handleInput() {
+                            const newLength = Math.max(input2.value.length + 1, 20);
+                            input2.style.width = newLength + "ch";
+                        }
 
-                function handleInput() {
-                    const newLength = Math.max(input2.value.length + 1, 20);
-                    input2.style.width = newLength + "ch";
-                }
+                        input2.addEventListener("input", handleInput);
+                    </script>
 
-                input2.addEventListener("input", handleInput);
-            </script>
+                    <br>
+                    <br>
+                    <br>
 
-            <br>
-            <br>
-            <br>
+                    <label for="email">Enter your email (use your personal email, NOT your school email): </label> <br>
+                    <input
+                        type="email"
+                        id="email"
+                        name="contact_email"
+                        required
+                        placeholder="you@example.com"
+                        maxlength="39"/>
 
-            <label for="email">Enter your email (use your personal email, NOT your school email): </label> <br>
-            <input
-                type="email"
-                id="email"
-                name="contact_email"
-                required
-                placeholder="you@example.com"
-                maxlength="39"/>
+                    <script>
+                        const input3 = document.getElementById("email");
 
-            <script>
-                const input3 = document.getElementById("email");
+                        function handleInput() {
+                            const newLength = Math.max(input3.value.length + 1, 20);
+                            input3.style.width = newLength + "ch";
+                        }
 
-                function handleInput() {
-                    const newLength = Math.max(input3.value.length + 1, 20);
-                    input3.style.width = newLength + "ch";
-                }
+                        input3.addEventListener("input", handleInput);
+                    </script>
+                    
+                    <br>
+                    <br>
+                    <br>
 
-                input3.addEventListener("input", handleInput);
-            </script>
-            
-            <br>
-            <br>
-            <br>
+                    <label for="grade">Enter your grade: </label> <br>
+                    <select name="grade" id="grade">
+                        <option value="9">9th</option>
+                        <option value="10">10th</option>
+                        <option value="11">11th</option>
+                        <option value="12">12th</option>
+                    </select>
 
-            <label for="grade">Enter your grade: </label> <br>
-            <select name="grade" id="grade">
-                <option value="9">9th</option>
-                <option value="10">10th</option>
-                <option value="11">11th</option>
-                <option value="12">12th</option>
-            </select>
+                    <br>
+                    <br>
+                    <br>
 
-            <br>
-            <br>
-            <br>
+                    <label for="password">Enter your password: </label> <br>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="At least 8 characters"
+                        required
+                        minlength="8"
+                        maxlength="39"
+                        autocomplete="current-password"
+                    >
 
-            <label for="password">Enter your password: </label> <br>
-            <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                placeholder="At least 8 characters"
-                required
-                minlength="8"
-                maxlength="39"
-                autocomplete="current-password"
-            >
+                    <script>
+                        const input4 = document.getElementById("password");
 
-            <script>
-                const input4 = document.getElementById("password");
+                        function handleInput() {
+                            const newLength = Math.max(input4.value.length + 1, 20);
+                            input4.style.width = newLength + "ch";
+                        }
 
-                function handleInput() {
-                    const newLength = Math.max(input4.value.length + 1, 20);
-                    input4.style.width = newLength + "ch";
-                }
+                        input4.addEventListener("input", handleInput);
+                    </script>
 
-                input4.addEventListener("input", handleInput);
-            </script>
+                    <br>
+                    <br>
 
-            <br>
-            <br>
+                    <label for="confirm-password">Confirm password: </label> <br>
+                    <input 
+                        type="password" 
+                        id="confirm-password"  
+                        name="confirm-password"  
+                        placeholder="Confirm your password"
+                        required
+                        minlength="8"
+                        maxlength="39"
+                        autocomplete="current-password"
+                    >
 
-            <label for="confirm-password">Confirm password: </label> <br>
-            <input 
-                type="password" 
-                id="confirm-password"  
-                name="confirm-password"  
-                placeholder="Confirm your password"
-                required
-                minlength="8"
-                maxlength="39"
-                autocomplete="current-password"
-            >
+                    <script>
+                        const input5 = document.getElementById("confirm-password");
 
-            <script>
-                const input5 = document.getElementById("confirm-password");
+                        function handleInput() {
+                            const newLength = Math.max(input5.value.length + 1, 20);
+                            input5.style.width = newLength + "ch";
+                        }
 
-                function handleInput() {
-                    const newLength = Math.max(input5.value.length + 1, 20);
-                    input5.style.width = newLength + "ch";
-                }
+                        input5.addEventListener("input", handleInput);
+                    
+                        const password = document.getElementById("password");
+                        const confirmPassword = document.getElementById("confirm-password");
 
-                input5.addEventListener("input", handleInput);
-              
-                const password = document.getElementById("password");
-                const confirmPassword = document.getElementById("confirm-password");
+                        function passwordEqual() {
+                            if (password.value !== confirmPassword.value) {
+                                confirmPassword.setCustomValidity("Passwords do not match");
+                            } else {
+                                confirmPassword.setCustomValidity("");
+                            }
+                        }
 
-                function passwordEqual() {
-                    if (password.value !== confirmPassword.value) {
-                        confirmPassword.setCustomValidity("Passwords do not match");
-                    } else {
-                        confirmPassword.setCustomValidity("");
-                    }
-                }
+                        password.onchange = passwordEqual;
+                        confirmPassword.onkeyup = passwordEqual;
+                    </script>
 
-                password.onchange = passwordEqual;
-                confirmPassword.onkeyup = passwordEqual;
-            </script>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-            <br>
-            <br>
-            <br>
-            <br>
-
-            <button><a href="email-verification.html">Register</a></button>
+                    <button class="register-button button-styling"><a href="email-verification.html">Register</a></button>
+                </div>
+            </div>
         </div>
+        
     </div>
 </body>
 </html>
