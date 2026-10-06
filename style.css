@@ -668,3 +668,76 @@ input[type="email"]{
     margin-left: var(--cat-margin);
 }
 
+.submission1 {
+    display: flex;
+    height: 50px;
+    width: 800px;
+    background-color: #1E293B;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.submission1 #sub1-user {
+    margin-right: var(--cat-margin);
+    font-weight: 16;
+}
+
+.submission1 #sub1-proj-name {
+    margin-right: var(--cat-margin);
+    margin-left: var(--cat-margin);
+    font-weight: 16;
+}
+
+.submission1 #sub1-likes {
+    margin-left: var(--cat-margin);
+    font-weight: 16;
+}
+
+/* View Project Page */
+.name-and-description {
+    display: flex;
+    height: 200px;
+    background-color: #1E293B;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.name-and-description h1 {
+    margin-right: 50px;
+    margin-left: 200px;
+    flex: 1 0 0%;
+    min-width: 0
+}
+
+.name-and-description p {
+    margin-right: 50px;
+    margin-left: 50px;
+    flex: 1 0 0%;
+    overflow-wrap: break-word;
+    min-width: 0
+}
+
+.proj-links {
+    display: flex;
+    height: 200px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.proj-links p {
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+.proj-place-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scoring-button {
+    width: 150px;
+}

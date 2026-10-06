@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="home-header">
+        <h1 class="header-site-name"><a class="header-link" href="home-signedin.html">CodeJam</a></h1>
+        <nav class="header-nav">
+            <a href="submit.html">Submit</a>
+            <a href="team-leaderboard.html">Leaderboard</a>
+            <a href="rules.html">Rules</a>
+        </nav>
+    </header>
+
+    <form class="submit-space" id="project-form">
+        <h1 class="large-text">Edit Submission</h1>
+        <label for="project_title">Update your project title:</label> <br>
+        <input
+            type="text"
+            id="project-title"
+            name="project_title"
+            required
+            placeholder="Study Timer"
+            minlength="2"
+            maxlength="100"/>
+
+        <br>
+        <br>
+
+        <script>
+            var input4 = document.getElementById("project-title");
+
+            function handleInput() {
+                var newLength = Math.max(input4.value.length + 1, 38.2);
+                input4.style.width = newLength + "ch";
+            }
+            input4.addEventListener("input", handleInput);
+            handleInput();
+        </script>
+
+        <label for="description">Update your description (300 chracters max):</label> <br>
+        <textarea
+            type="text"
+            id="description"
+            name="description"
+            required
+            placeholder="A Pomodoro timer for students."
+            rows="4"
+            minlength="20"
+            maxlength="300"></textarea>
+
+        <br>
+        <br>
+
+        <label for="project-url">Update your project link (optional):</label> <br>
+        <input
+            type="text"
+            id="project-url"
+            name="project_url"
+            placeholder="https://example.com"
+            minlength="2"
+            maxlength="100"/>
+
+        <br>
+        <br>
+
+        <script>
+            var input2 = document.getElementById("project-url");
+
+            function handleInput() {
+                var newLength = Math.max(input2.value.length + 1, 38.2);
+                input2.style.width = newLength + "ch";
+            }
+            input2.addEventListener("input", handleInput);
+            handleInput();
+        </script>
+
+        <label for="github-url">Update your GitHub repository link: </label> <br>
+        <input
+            type="text"
+            id="github-url"
+            name="github_url"
+            required
+            placeholder="https://github.com/astran123258/example-repo"
+            minlength="2"
+            maxlength="100"/>
+        
+        <script>
+            var input = document.getElementById("github-url");
+
+            function handleInput() {
+                var newLength = Math.max(input.value.length + 1, 38.2);
+                input.style.width = newLength + "ch";
+            }
+            input.addEventListener("input", handleInput);
+            handleInput();
+        </script>
+
+        <br>
+
+
+        <button class="button-styling" type="submit">Save</button>
+
+        <script>
+            var projectForm = document.getElementById("project-form");
+
+            projectForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                window.location.href = "home-signedin.html";
+            });
+        </script>
+    </form>
+</body>
+</html>
