@@ -35,11 +35,64 @@
     <div class="proj-place-button">
         <button class="scoring-button button-styling">Score Submission</button>
     </div>
+    
+    <script>
+        const submissionId = new URLSearchParams(window.location.search)
+            .get("submission_id");
 
-    <p id="team-name"></p>
-    <p id="team-members"></p>
-    <p id="description"></p>
+        async function loadSubmission() {
+            if (!submissionId) {
+            document.getElementById("project-title").textContent =
+                "No submission ID provided";
+            return;
+            }
 
+            try {
+            // Replace this path with the endpoint your backend provides.
+            const response = await fetch(
+                `/api/submissions/${encodeURIComponent(submissionId)}`
+            );
+
+            if (!response.ok) {
+                throw new Error("Submission could not be loaded");
+            }
+
+            const submission = await response.json();
+
+            document.getElementById("team-name").textContent =
+                `Project Name: ${submission.project_name ?? ""}`;
+
+            document.getElementById("team-members").textContent =
+                `Team members: ${Array.isArray(submission.team_members)
+                ? submission.team_members.join(", ")
+                : submission.team_members ?? ""}`;
+
+            document.getElementById("project-title").textContent =
+                submission.project_name ?? "";
+
+            document.getElementById("description").textContent =
+                submission.description ?? "";
+
+            const githubLink = document.getElementById("github-url");
+            githubLink.textContent = submission.github_url
+                ? `Github link: ${submission.github_url}`
+                : "Github link: N/A";
+            if (submission.github_url) githubLink.href = submission.github_url;
+
+            const projectLink = document.getElementById("project-url");
+            projectLink.textContent = submission.project_url
+                ? `Website link: ${submission.project_url}`
+                : "Website link: N/A";
+            if (submission.project_url) projectLink.href = submission.project_url;
+            } catch (error) {
+            document.getElementById("project-title").textContent =
+                "Could not load this submission";
+            console.error(error);
+            }
+        }
+
+        loadSubmission();
+    </script>
 
 
 
