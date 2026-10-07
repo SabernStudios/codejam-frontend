@@ -695,10 +695,23 @@ input[type="email"]{
 }
 
 /* View Project Page */
+.proj-names {
+    display: flex;
+    background-color: #1E293B;
+    height: 200px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.proj-names p {
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
 .name-and-description {
     display: flex;
     height: 200px;
-    background-color: #1E293B;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -722,12 +735,13 @@ input[type="email"]{
 .proj-links {
     display: flex;
     height: 200px;
+    background-color: #1E293B;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.proj-links p {
+.proj-links a {
     margin-right: 250px;
     margin-left: 250px;
 }
