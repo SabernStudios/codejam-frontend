@@ -1,4 +1,7 @@
-async function login(username, password) {
+document.getElementById("login-button").addEventListener("click", async function () {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+
   const formData = new URLSearchParams();
   formData.append("username", username);
   formData.append("password", password);
@@ -12,5 +15,16 @@ async function login(username, password) {
   });
 
   const data = await response.json();
-  console.log(data);
-}
+
+  if (!response.ok) {
+    alert(data.detail || "Login failed");
+    return;
+  }
+
+  localStorage.setItem("token", data.access_token);
+  localStorage.setItem("username", data.username);
+  localStorage.setItem("role", data.role);
+
+  alert("Logged in!");
+  window.location.href = "home-signedin.html";
+});
