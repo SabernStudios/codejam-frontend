@@ -1,15 +1,15 @@
 .submission-page {
     min-height: calc(100vh - 84px);
-    padding: 56px 24px 88px;
+    padding: 44px 24px 88px;
     background: #0F172A;
 }
 
 .submission-layout {
-    width: min(1120px, 100%);
+    width: min(980px, 100%);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(280px, 0.82fr) minmax(360px, 1.18fr);
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 22px;
     align-items: start;
 }
 
@@ -20,22 +20,20 @@
 }
 
 .submission-intro {
-    padding: 34px;
-    border-left: 5px solid #22D3EE;
+    padding: 28px;
+    border-top: 5px solid #22D3EE;
 }
 
 .submission-school-lockup {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 34px;
-    padding-bottom: 22px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+    margin-bottom: 20px;
 }
 
 .submission-school-logo {
-    width: 58px;
-    height: 58px;
+    width: 54px;
+    height: 54px;
     object-fit: contain;
     flex: 0 0 auto;
     background: #F8FAFC;
@@ -49,7 +47,7 @@
 
 .submission-school-lockup span {
     color: #CBD5E1;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -63,7 +61,7 @@
 }
 
 .submission-eyebrow {
-    margin: 0 0 12px;
+    margin: 0 0 10px;
     color: #22D3EE;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
@@ -75,23 +73,25 @@
 .submission-intro h1 {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    font-size: clamp(42px, 6vw, 72px);
+    font-size: clamp(38px, 6vw, 64px);
     line-height: 0.98;
     letter-spacing: -0.045em;
 }
 
 .submission-intro-text {
-    margin: 22px 0 0;
+    max-width: 800px;
+    margin: 18px 0 0;
     color: #CBD5E1;
     font-size: 18px;
     line-height: 1.65;
 }
 
 .submission-checklist {
-    margin: 30px 0 0;
+    margin: 24px 0 0;
     padding: 0;
     list-style: none;
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -100,6 +100,7 @@
     border-left: 3px solid #22D3EE;
     background: rgba(15, 23, 42, 0.76);
     color: #E2E8F0;
+    line-height: 1.45;
 }
 
 .submission-form-card {
@@ -210,18 +211,17 @@
     background: #67E8F9;
 }
 
-@media (max-width: 900px) {
-    .submission-layout {
-        grid-template-columns: 1fr;
+@media (max-width: 700px) {
+    .submission-page {
+        padding: 32px 14px 70px;
     }
 
     .submission-intro,
     .submission-form-card {
-        padding: 28px;
+        padding: 24px;
     }
-}
 
-@media (max-width: 520px) {
+    .submission-checklist,
     .submission-choice-grid {
         grid-template-columns: 1fr;
     }
