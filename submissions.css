@@ -1,10 +1,7 @@
 .submission-page {
     min-height: calc(100vh - 84px);
     padding: 64px 24px 96px;
-    background:
-        radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 30rem),
-        radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.10), transparent 34rem),
-        #0F172A;
+    background: #0F172A;
 }
 
 .submission-layout {
@@ -12,36 +9,35 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
-    gap: 32px;
+    gap: 28px;
     align-items: start;
 }
 
 .submission-intro,
 .submission-form-card {
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    background: rgba(30, 41, 59, 0.82);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    background: rgba(30, 41, 59, 0.78);
 }
 
 .submission-intro {
-    padding: 46px;
-    background:
-        linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.94)),
-        radial-gradient(circle at top left, rgba(34, 211, 238, 0.18), transparent 30rem);
+    padding: 42px;
+    background: #111827;
 }
 
 .submission-eyebrow {
     margin: 0 0 14px;
     color: #22D3EE;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .submission-intro h1 {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    font-size: clamp(46px, 7vw, 86px);
+    font-size: clamp(46px, 7vw, 82px);
     line-height: 0.95;
     letter-spacing: -0.055em;
 }
@@ -150,7 +146,7 @@
 .submission-field input:focus,
 .submission-field textarea:focus {
     border-color: #22D3EE;
-    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.16);
 }
 
 .submission-field textarea {
