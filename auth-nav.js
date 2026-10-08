@@ -1,3 +1,22 @@
+(function loadGlobalThemeStyles() {
+  const fontHref = "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap";
+  const themeHref = "sharp-theme.css";
+
+  function addStylesheet(href) {
+    if (document.querySelector(`link[href="${href}"]`)) {
+      return;
+    }
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }
+
+  addStylesheet(fontHref);
+  addStylesheet(themeHref);
+})();
+
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
 
