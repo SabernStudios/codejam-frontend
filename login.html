@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeJam</title>
+    <title>Sign In | CodeJam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
-    <script src="border-glow.js" defer></script>
-    <script src="auth-nav.js" defer></script>
+    <link rel="stylesheet" href="sharp-theme.css">
+    <link rel="stylesheet" href="auth.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
+    <script src="auth-nav.js" defer></script>
 </head>
-<body>
+<body class="auth-page-body">
     <header class="home-header">
         <h1 class="header-site-name"><a class="header-link" href="index.html">CodeJam</a></h1>
         <nav class="header-nav">
@@ -19,74 +21,54 @@
         </nav>
         <a href="login.html" class="register-link">Sign in</a>
     </header>
-    <div class="sign-in-info">
-        <h1 class="big-text">Sign in</h1>
-        <p>Don't have an account yet? <a href="register.html">Sign up</a></p>
-        <div class="sign-in-box border-glow-card" data-animated="true">
-            <span class="edge-light" aria-hidden="true"></span>
-            <div class="border-glow-inner">
-                <label for="name">Enter your username/teamname: </label> <br>
-                <input
-                    class="name-input text-fields"
-                    type="text"
-                    id="username"
-                    name="username"
-                    required
-                    placeholder="JDoe1234"
-                    minlength="2"
-                    maxlength="39"/>
-                
-                <script>
-                    var input = document.getElementById("username");
 
-                    function handleInput() {
-                        var newLength = Math.max(input.value.length + 1, 20);
-                        newLength = Math.min(newLength, 30);
-                        input.style.width = newLength + "ch";
-                    }
-                    input.addEventListener("input", handleInput);
-                </script>
-
-                <br>
-                <br>
-                <br>
-
-                <label for="password">Enter your password: </label> <br>
-                <input 
-                    type="password" 
-                    class="text-fields"
-                    id="password" 
-                    name="password" 
-                    placeholder="At least 8 characters"
-                    required
-                    minlength="8"
-                    maxlength="39"
-                    autocomplete="current-password"
-                >
-
-                <script>
-                    const input4 = document.getElementById("password");
-
-                    function handleInput() {
-                        const newLength = Math.max(input4.value.length + 1, 20);
-                        newLength = Math.min(newLength, 30);
-                        input4.style.width = newLength + "ch";
-                    }
-
-                    input4.addEventListener("input", handleInput);
-                </script>
-
-                <br>
-                <br>
-                <br>
-                <br>
-
-                <button id="login-button" class="sign-in-button button-styling">Sign in</button>
+    <main class="auth-page">
+        <section class="auth-card">
+            <div class="auth-copy">
+                <p class="auth-eyebrow">Welcome back</p>
+                <h1>Sign in to CodeJam.</h1>
+                <p>
+                    Sign in to submit your project, view your account status, like projects, and access judge tools if your account has judge permissions.
+                </p>
             </div>
-        </div>
-        
-        <p>Forgot your password? <a href="https://youtu.be/dQw4w9WgXcQ">Click this link</a></p>
-    </div>
+
+            <div class="auth-form-panel">
+                <form id="login-form" class="auth-form">
+                    <div class="auth-field">
+                        <label for="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            placeholder="JDoe1234"
+                            minlength="2"
+                            maxlength="39"
+                            autocomplete="username">
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            placeholder="Enter your password"
+                            minlength="8"
+                            maxlength="72"
+                            autocomplete="current-password">
+                    </div>
+
+                    <p id="login-status" class="auth-status" aria-live="polite"></p>
+                    <button id="login-button" class="auth-submit-button" type="submit">Sign in</button>
+                </form>
+
+                <p class="auth-switch">Need an account? <a href="register.html">Create one</a></p>
+            </div>
+        </section>
+    </main>
+
     <script src="api.js"></script>
     <script src="login.js"></script>
 </body>
