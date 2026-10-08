@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  --codejam-font-sans: 'Inter', sans-serif;
+  --codejam-font-mono: 'JetBrains Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--codejam-font-sans) !important;
+}
+
+code,
+pre,
+kbd,
+samp,
+.project-eyebrow,
+.project-meta-card span,
+.project-side-card h2,
+.leaderboard-eyebrow,
+.leaderboard-stat-label,
+.leaderboard-rank,
+.leaderboard-meta,
+.leaderboard-pill {
+  font-family: var(--codejam-font-mono) !important;
+}
+
+button,
+a,
+input,
+textarea,
+select,
+.border-glow-card,
+.border-glow-card::before,
+.border-glow-card::after,
+.edge-light,
+.edge-light::before,
+.project-hero-card,
+.project-side-card,
+.project-meta-card,
+.project-link-button,
+.project-score-button,
+.like-button,
+.leaderboard-card,
+.leaderboard-control,
+.leaderboard-pill,
+.leaderboard-action,
+.register-selection > a > div,
+.register-competitor-info > div,
+.sign-in-info > div,
+.verification > div,
+.rules-full > .border-glow-card,
+.rule-toggle,
+.rule-details {
+  border-radius: 0 !important;
+}
