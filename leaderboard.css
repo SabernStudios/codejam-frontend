@@ -153,6 +153,12 @@
     font-size: 14px;
 }
 
+.leaderboard-likes {
+    color: #F472B6;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 .leaderboard-main-info h3 {
     margin: 0 0 10px;
     color: #F8FAFC;
