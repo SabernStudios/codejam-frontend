@@ -90,12 +90,97 @@ function sortItems(items) {
   return sorted;
 }
 
+function getTopThreeItems() {
+  return leaderboardItems
+    .filter(function (item) {
+      return item.is_scored && typeof item.total_score === "number";
+    })
+    .sort(function (a, b) {
+      const scoreDifference = b.total_score - a.total_score;
+
+      if (scoreDifference !== 0) {
+        return scoreDifference;
+      }
+
+      return (b.likes ?? 0) - (a.likes ?? 0);
+    })
+    .slice(0, 3);
+}
+
+function getCommunityFavorite() {
+  const likedItems = leaderboardItems
+    .filter(function (item) {
+      return (item.likes ?? 0) > 0;
+    })
+    .sort(function (a, b) {
+      const likeDifference = (b.likes ?? 0) - (a.likes ?? 0);
+
+      if (likeDifference !== 0) {
+        return likeDifference;
+      }
+
+      return (b.total_score ?? -1) - (a.total_score ?? -1);
+    });
+
+  return likedItems[0] || null;
+}
+
+function makeHighlightCard(item, label, statText) {
+  return `
+    <a class="spotlight-card" href="project-page.html?submission_id=${encodeURIComponent(item.submission_id)}">
+      <div class="spotlight-label">${escapeHtml(label)}</div>
+      <h3>${escapeHtml(item.project_title || "Untitled Project")}</h3>
+      <p>${escapeHtml(item.team_name || "Unknown team")}</p>
+      <strong>${escapeHtml(statText)}</strong>
+    </a>
+  `;
+}
+
+function renderHighlights() {
+  const topThreeList = document.getElementById("top-three-list");
+  const communityFavoriteCard = document.getElementById("community-favorite-card");
+
+  if (!topThreeList || !communityFavoriteCard) {
+    return;
+  }
+
+  const topThreeItems = getTopThreeItems();
+
+  if (topThreeItems.length === 0) {
+    topThreeList.innerHTML = `<p class="spotlight-empty">Top 3 will appear after projects receive judge scores.</p>`;
+  } else {
+    topThreeList.innerHTML = topThreeItems
+      .map(function (item, index) {
+        return makeHighlightCard(
+          item,
+          `#${index + 1}`,
+          `${item.total_score}/70 • ${item.number_of_scores} judge score${item.number_of_scores === 1 ? "" : "s"}`
+        );
+      })
+      .join("");
+  }
+
+  const communityFavorite = getCommunityFavorite();
+
+  if (!communityFavorite) {
+    communityFavoriteCard.innerHTML = `<p class="spotlight-empty">Community favorite will appear once projects receive likes.</p>`;
+  } else {
+    communityFavoriteCard.innerHTML = makeHighlightCard(
+      communityFavorite,
+      "Community Favorite",
+      `♥ ${communityFavorite.likes} like${communityFavorite.likes === 1 ? "" : "s"}`
+    );
+  }
+}
+
 function renderLeaderboard() {
   const list = document.getElementById("leaderboard-list");
   const count = document.getElementById("leaderboard-count");
   const status = document.getElementById("leaderboard-status");
 
   const sortedItems = sortItems(leaderboardItems);
+
+  renderHighlights();
 
   count.textContent = `${sortedItems.length} project${sortedItems.length === 1 ? "" : "s"}`;
   list.innerHTML = "";
