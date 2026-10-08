@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeJam</title>
+    <title>Submit Project | CodeJam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="submissions.css">
+    <link rel="stylesheet" href="sharp-theme.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
     <script src="auth-nav.js" defer></script>
 </head>
@@ -19,109 +22,91 @@
         <a href="login.html" class="register-link">Sign in</a>
     </header>
 
-    <form class="submit-space" id="project-form">
-        <h1 class="large-text">Submit</h1>
-        <label for="project-title">Enter your project title:</label> <br>
-        <input
-            type="text"
-            id="project-title"
-            name="project_title"
-            required
-            placeholder="Study Timer"
-            minlength="2"
-            maxlength="100"/>
+    <main class="submission-page">
+        <div class="submission-layout">
+            <section class="submission-intro">
+                <p class="submission-eyebrow">CodeJam submission</p>
+                <h1>Submit your project.</h1>
+                <p class="submission-intro-text">
+                    Send in your CodeJam project before the deadline. Make sure your repository is public or accessible to judges.
+                </p>
 
-        <br>
-        <br>
-        <br>
+                <ul class="submission-checklist">
+                    <li>Use a clear project title.</li>
+                    <li>Write a description that explains what the project does.</li>
+                    <li>Include a working GitHub repository link.</li>
+                    <li>Add a live website link if your project has one.</li>
+                </ul>
+            </section>
 
-        <script>
-            var input4 = document.getElementById("project-title");
+            <section class="submission-form-card">
+                <form class="submit-space" id="project-form">
+                    <h2>Project details</h2>
 
-            function handleInput() {
-                var newLength = Math.max(input4.value.length + 1, 38.2);
-                input4.style.width = newLength + "ch";
-            }
-            input4.addEventListener("input", handleInput);
-            handleInput();
-        </script>
+                    <div class="submission-field">
+                        <label for="project-title">Project title</label>
+                        <input
+                            type="text"
+                            id="project-title"
+                            name="project_title"
+                            required
+                            placeholder="Study Timer"
+                            minlength="2"
+                            maxlength="100"/>
+                    </div>
 
-        <label for="description">Enter a short description (300 characters max):</label> <br>
-        <textarea
-            id="description"
-            name="description"
-            required
-            placeholder="A Pomodoro timer for students."
-            rows="4"
-            minlength="20"
-            maxlength="300"></textarea>
+                    <div class="submission-field">
+                        <label for="description">Description</label>
+                        <p class="submission-help">300 characters max. Explain the idea, what it does, and why it fits the theme.</p>
+                        <textarea
+                            id="description"
+                            name="description"
+                            required
+                            placeholder="A Pomodoro timer for students."
+                            rows="5"
+                            minlength="20"
+                            maxlength="300"></textarea>
+                    </div>
 
-        <br>
-        <br>
-        <br>
+                    <div class="submission-field">
+                        <label for="contact-email">Contact email</label>
+                        <input
+                            type="email"
+                            id="contact-email"
+                            name="contact_email"
+                            required
+                            placeholder="student@example.com"
+                            maxlength="100"/>
+                    </div>
 
-        <label for="contact-email">Enter your contact email:</label> <br>
-        <input
-            type="email"
-            id="contact-email"
-            name="contact_email"
-            required
-            placeholder="student@example.com"
-            maxlength="100"/>
+                    <div class="submission-field">
+                        <label for="github-url">GitHub repository link</label>
+                        <input
+                            type="url"
+                            id="github-url"
+                            name="github_url"
+                            required
+                            placeholder="https://github.com/username/example-repo"
+                            minlength="2"
+                            maxlength="100"/>
+                    </div>
 
-        <br>
-        <br>
-        <br>
+                    <div class="submission-field">
+                        <label for="project-url">Project website link</label>
+                        <p class="submission-help">Optional. If left blank, your GitHub link will be used as the project link.</p>
+                        <input
+                            type="url"
+                            id="project-url"
+                            name="project_url"
+                            placeholder="https://example.com"
+                            maxlength="100"/>
+                    </div>
 
-        <label for="project-url">Enter your project link, if you have a website for it (optional):</label> <br>
-        <input
-            type="url"
-            id="project-url"
-            name="project_url"
-            placeholder="https://example.com"
-            maxlength="100"/>
-
-        <br>
-        <br>
-        <br>
-
-        <script>
-            var input2 = document.getElementById("project-url");
-
-            function handleInput() {
-                var newLength = Math.max(input2.value.length + 1, 38.2);
-                input2.style.width = newLength + "ch";
-            }
-            input2.addEventListener("input", handleInput);
-            handleInput();
-        </script>
-
-        <label for="github-url">Enter your GitHub repository link: </label> <br>
-        <input
-            type="url"
-            id="github-url"
-            name="github_url"
-            required
-            placeholder="https://github.com/astran123258/example-repo"
-            minlength="2"
-            maxlength="100"/>
-        
-        <script>
-            var input = document.getElementById("github-url");
-
-            function handleInput() {
-                var newLength = Math.max(input.value.length + 1, 38.2);
-                input.style.width = newLength + "ch";
-            }
-            input.addEventListener("input", handleInput);
-            handleInput();
-        </script>
-
-        <br>
-        <br>
-
-        <button class="button-styling" type="submit">Submit</button>
-    </form>
+                    <button class="submission-submit-button button-styling" type="submit">Submit project</button>
+                </form>
+            </section>
+        </div>
+    </main>
 
     <script src="api.js"></script>
     <script src="submissions.js"></script>
