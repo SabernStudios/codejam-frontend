@@ -10,14 +10,16 @@ function escapeHtml(value) {
 }
 
 function normalizeScoredItem(item) {
+  const scoreCount = item.number_of_scores ?? 0;
+
   return {
     submission_id: item.submission_id,
     project_title: item.project_title,
     team_name: item.team_name,
     category: item.category,
     total_score: item.total_score,
-    number_of_scores: item.number_of_scores ?? 0,
-    is_scored: true
+    number_of_scores: scoreCount,
+    is_scored: scoreCount > 0
   };
 }
 
@@ -44,7 +46,15 @@ function sortItems(items) {
   } else if (sortBy === "category") {
     sorted.sort((a, b) => a.category.localeCompare(b.category));
   } else {
-    sorted.sort((a, b) => (b.total_score ?? -1) - (a.total_score ?? -1));
+    sorted.sort((a, b) => {
+      const scoreDifference = (b.total_score ?? -1) - (a.total_score ?? -1);
+
+      if (scoreDifference !== 0) {
+        return scoreDifference;
+      }
+
+      return a.project_title.localeCompare(b.project_title);
+    });
   }
 
   return sorted;
@@ -106,23 +116,36 @@ async function loadLeaderboard() {
   const status = document.getElementById("leaderboard-status");
 
   try {
-    const leaderboardResponse = await fetch(`${API_BASE_URL}/leaderboard`);
+    const [leaderboardResponse, submissionsResponse] = await Promise.all([
+      fetch(`${API_BASE_URL}/leaderboard`),
+      fetch(`${API_BASE_URL}/submissions`)
+    ]);
+
     const leaderboardData = await leaderboardResponse.json();
-
-    if (leaderboardResponse.ok && leaderboardData.length > 0) {
-      leaderboardItems = leaderboardData.map(normalizeScoredItem);
-      renderLeaderboard();
-      return;
-    }
-
-    const submissionsResponse = await fetch(`${API_BASE_URL}/submissions`);
     const submissionsData = await submissionsResponse.json();
 
     if (!submissionsResponse.ok) {
       throw new Error(submissionsData.detail || "Could not load submissions.");
     }
 
-    leaderboardItems = submissionsData.map(normalizeSubmission);
+    if (!leaderboardResponse.ok) {
+      throw new Error(leaderboardData.detail || "Could not load leaderboard scores.");
+    }
+
+    const scoredItems = leaderboardData.map(normalizeScoredItem);
+    const scoredSubmissionIds = new Set(
+      scoredItems.map(function (item) {
+        return Number(item.submission_id);
+      })
+    );
+
+    const unscoredItems = submissionsData
+      .filter(function (submission) {
+        return !scoredSubmissionIds.has(Number(submission.id));
+      })
+      .map(normalizeSubmission);
+
+    leaderboardItems = scoredItems.concat(unscoredItems);
     renderLeaderboard();
   } catch (error) {
     console.error(error);
