@@ -9,13 +9,23 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function getParticipantType(item) {
+  return item.participant_type === "team" ? "team" : "individual";
+}
+
+function getParticipantLabel(item) {
+  return getParticipantType(item) === "team" ? "Team" : "Individual";
+}
+
 function normalizeScoredItem(item) {
   const scoreCount = item.number_of_scores ?? 0;
 
   return {
     submission_id: item.submission_id,
     project_title: item.project_title,
+    participant_type: item.participant_type || "individual",
     team_name: item.team_name,
+    team_members: item.team_members || item.team_name,
     category: item.category,
     total_score: item.total_score,
     number_of_scores: scoreCount,
@@ -28,7 +38,9 @@ function normalizeSubmission(item) {
   return {
     submission_id: item.id,
     project_title: item.project_title,
+    participant_type: item.participant_type || "individual",
     team_name: item.team_name,
+    team_members: item.team_members || item.team_name,
     category: item.category,
     total_score: null,
     number_of_scores: 0,
@@ -130,7 +142,7 @@ function makeHighlightCard(item, label, statText) {
     <a class="spotlight-card" href="project-page.html?submission_id=${encodeURIComponent(item.submission_id)}">
       <div class="spotlight-label">${escapeHtml(label)}</div>
       <h3>${escapeHtml(item.project_title || "Untitled Project")}</h3>
-      <p>${escapeHtml(item.team_name || "Unknown team")}</p>
+      <p>${escapeHtml(getParticipantLabel(item))}: ${escapeHtml(item.team_name || "Unknown")}</p>
       <strong>${escapeHtml(statText)}</strong>
     </a>
   `;
@@ -209,8 +221,9 @@ function renderLeaderboard() {
 
       <div class="leaderboard-main-info">
         <div class="leaderboard-card-topline">
+          <span class="leaderboard-participant-type">${escapeHtml(getParticipantLabel(item))}</span>
           <span class="leaderboard-pill">${escapeHtml(item.category || "General")}</span>
-          <span class="leaderboard-team">${escapeHtml(item.team_name || "Unknown team")}</span>
+          <span class="leaderboard-team">${escapeHtml(item.team_name || "Unknown")}</span>
           <span class="leaderboard-likes">♥ ${escapeHtml(likeText)}</span>
         </div>
         <h3>${escapeHtml(item.project_title || "Untitled Project")}</h3>
@@ -249,7 +262,22 @@ async function loadLeaderboard() {
       throw new Error(leaderboardData.detail || "Could not load leaderboard scores.");
     }
 
-    const scoredItems = leaderboardData.map(normalizeScoredItem);
+    const submissionsById = new Map(
+      submissionsData.map(function (submission) {
+        return [Number(submission.id), submission];
+      })
+    );
+
+    const scoredItems = leaderboardData.map(function (item) {
+      const sourceSubmission = submissionsById.get(Number(item.submission_id));
+      return normalizeScoredItem({
+        ...sourceSubmission,
+        ...item,
+        participant_type: item.participant_type || sourceSubmission?.participant_type || "individual",
+        team_members: item.team_members || sourceSubmission?.team_members || item.team_name
+      });
+    });
+
     const scoredSubmissionIds = new Set(
       scoredItems.map(function (item) {
         return Number(item.submission_id);
