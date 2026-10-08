@@ -126,9 +126,14 @@ async function loadProject() {
       throw new Error(data.detail || "Could not load project.");
     }
 
+    const participantType = data.participant_type === "team" ? "team" : "individual";
+    const isTeam = participantType === "team";
+
     document.getElementById("project-title").textContent = data.project_title || "Untitled project";
+    document.getElementById("team-name-label").textContent = isTeam ? "Team" : "Creator";
+    document.getElementById("team-members-label").textContent = isTeam ? "Team members" : "Participant";
     document.getElementById("team-name").textContent = data.team_name || "Unknown";
-    document.getElementById("team-members").textContent = data.team_members || "Unknown";
+    document.getElementById("team-members").textContent = data.team_members || data.team_name || "Unknown";
     document.getElementById("description").textContent = data.description || "No description provided.";
 
     setLinkState(document.getElementById("github-url"), "Open GitHub Repository", data.github_url);
