@@ -9,6 +9,43 @@
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
     <script src="border-glow.js" defer></script>
     <script src="auth-nav.js" defer></script>
+    <style>
+        .rules-body .large-text {
+            margin: 36px 0 18px;
+            font-size: clamp(54px, 8vw, 92px);
+            line-height: 1;
+        }
+
+        .rules-full {
+            margin-top: 24px;
+            padding-left: 48px;
+            padding-right: 48px;
+            gap: 24px;
+        }
+
+        .rules-full > .border-glow-card {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .rule-toggle {
+            min-height: 76px;
+            padding: 14px 18px;
+            font-size: 38px;
+        }
+
+        @media (max-width: 900px) {
+            .rules-full {
+                flex-direction: column;
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .rules-full > .border-glow-card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body class="rules-body">
     <header class="home-header">
