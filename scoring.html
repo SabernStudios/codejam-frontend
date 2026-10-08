@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeJam Scoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sharp-theme.css">
+    <link rel="stylesheet" href="scoring.css">
+    <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
+    <script src="auth-nav.js" defer></script>
+</head>
+<body>
+    <header class="home-header">
+        <h1 class="header-site-name"><a class="header-link" href="index.html">CodeJam</a></h1>
+        <nav class="header-nav">
+            <a href="submissions.html">Submit</a>
+            <a href="team-leaderboard.html">Leaderboard</a>
+            <a href="rules.html">Rules</a>
+        </nav>
+        <a href="login.html" class="register-link">Sign in</a>
+    </header>
+
+    <main class="scoring-page">
+        <section class="scoring-hero">
+            <p class="scoring-eyebrow">Judge panel</p>
+            <h1>Score Submission</h1>
+            <p id="scoring-status" class="scoring-status">Loading submission...</p>
+        </section>
+
+        <section class="scoring-grid">
+            <aside class="submission-preview">
+                <p class="panel-label">Current project</p>
+                <h2 id="project-title">Loading project...</h2>
+                <p id="project-team" class="project-team">Loading creator...</p>
+                <p id="project-description" class="project-description">Loading description...</p>
+
+                <div class="submission-links">
+                    <a id="github-url" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a id="project-url" target="_blank" rel="noopener noreferrer">Project</a>
+                </div>
+            </aside>
+
+            <section class="score-panel">
+                <div class="score-panel-header">
+                    <div>
+                        <p class="panel-label">Rubric</p>
+                        <h2>Total: <span id="total-score">5</span>/70</h2>
+                    </div>
+                    <a id="back-to-project" class="secondary-link" href="team-leaderboard.html">Back to project</a>
+                </div>
+
+                <form id="score-form" class="score-form">
+                    <div class="score-row">
+                        <label for="creativity">
+                            <span>Creativity</span>
+                            <small>Originality, theme interpretation, and idea strength.</small>
+                        </label>
+                        <input id="creativity" name="creativity" type="number" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="score-row">
+                        <label for="functionality">
+                            <span>Functionality</span>
+                            <small>How well the project works and avoids breaking.</small>
+                        </label>
+                        <input id="functionality" name="functionality" type="number" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="score-row">
+                        <label for="technical-effort">
+                            <span>Technical Effort</span>
+                            <small>Programming difficulty, scope, and implementation effort.</small>
+                        </label>
+                        <input id="technical-effort" name="technical_effort" type="number" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="score-row">
+                        <label for="presentation">
+                            <span>Presentation</span>
+                            <small>Clarity, polish, explanation, and visual communication.</small>
+                        </label>
+                        <input id="presentation" name="presentation" type="number" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div class="score-row score-row-large">
+                        <label for="user-experience">
+                            <span>User Experience</span>
+                            <small>Enjoyment, usability, flow, and how good it feels to use.</small>
+                        </label>
+                        <input id="user-experience" name="user_experience" type="number" min="1" max="30" value="1" required>
+                    </div>
+
+                    <label class="comments-label" for="comments">Judge comments</label>
+                    <textarea id="comments" name="comments" rows="5" placeholder="Optional notes for the team or judging record..."></textarea>
+
+                    <button id="submit-score-button" class="submit-score-button" type="submit">Submit Score</button>
+                </form>
+            </section>
+        </section>
+
+        <section class="previous-scores-panel">
+            <div class="previous-scores-header">
+                <div>
+                    <p class="panel-label">Existing scores</p>
+                    <h2 id="score-count">Loading...</h2>
+                </div>
+                <p id="score-average" class="score-average">Average: --/70</p>
+            </div>
+            <div id="previous-scores-list" class="previous-scores-list"></div>
+        </section>
+    </main>
+
+    <script src="api.js"></script>
+    <script src="scoring.js"></script>
+</body>
+</html>
