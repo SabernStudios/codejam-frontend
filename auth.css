@@ -1,41 +1,73 @@
 .auth-page-body {
     min-height: 100vh;
-    background:
-        radial-gradient(circle at top left, rgba(34, 211, 238, 0.14), transparent 30rem),
-        radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.12), transparent 34rem),
-        #0F172A;
+    background: #0F172A;
 }
 
 .auth-page {
     width: min(1040px, calc(100% - 48px));
-    margin: 58px auto 88px;
+    margin: 54px auto 88px;
 }
 
 .auth-card {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.05fr);
-    gap: 28px;
+    grid-template-columns: minmax(280px, 0.88fr) minmax(340px, 1.12fr);
+    gap: 24px;
     align-items: stretch;
 }
 
 .auth-copy,
 .auth-form-panel {
-    border: 1px solid rgba(148, 163, 184, 0.24);
-    background: rgba(30, 41, 59, 0.82);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: #111827;
 }
 
 .auth-copy {
-    padding: 46px;
-    background:
-        linear-gradient(135deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.94)),
-        radial-gradient(circle at top left, rgba(34, 211, 238, 0.2), transparent 28rem);
+    padding: 34px;
+    border-left: 5px solid #22D3EE;
+}
+
+.auth-school-lockup {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 34px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.auth-school-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex: 0 0 auto;
+    background: #F8FAFC;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.auth-school-lockup span,
+.auth-school-lockup strong {
+    display: block;
+}
+
+.auth-school-lockup span {
+    color: #CBD5E1;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.auth-school-lockup strong {
+    margin-top: 4px;
+    color: #F8FAFC;
+    font-size: 18px;
+    line-height: 1.2;
 }
 
 .auth-eyebrow {
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     color: #22D3EE;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -44,20 +76,20 @@
 .auth-copy h1 {
     margin: 0;
     color: #F8FAFC;
-    font-size: clamp(46px, 7vw, 82px);
-    line-height: 0.95;
-    letter-spacing: -0.055em;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
 }
 
 .auth-copy p:not(.auth-eyebrow) {
-    margin: 24px 0 0;
+    margin: 22px 0 0;
     color: #CBD5E1;
     font-size: 18px;
     line-height: 1.65;
 }
 
 .auth-form-panel {
-    padding: 36px;
+    padding: 34px;
 }
 
 .auth-form {
@@ -79,7 +111,7 @@
     width: 100%;
     min-height: 48px;
     box-sizing: border-box;
-    border: 1px solid rgba(34, 211, 238, 0.42);
+    border: 1px solid rgba(148, 163, 184, 0.32);
     background: rgba(15, 23, 42, 0.86);
     color: #F8FAFC;
     padding: 12px 14px;
@@ -88,7 +120,7 @@
 
 .auth-field input:focus {
     border-color: #22D3EE;
-    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.16);
 }
 
 .auth-help {
