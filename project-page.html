@@ -6,8 +6,173 @@
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
     <script src="auth-nav.js" defer></script>
+    <style>
+        .project-page-body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 32rem),
+                radial-gradient(circle at bottom right, rgba(167, 139, 250, 0.10), transparent 34rem),
+                #0F172A;
+        }
+
+        .project-view {
+            width: min(1100px, calc(100% - 48px));
+            margin: 64px auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .project-hero-card,
+        .project-side-card {
+            background: rgba(30, 41, 59, 0.92);
+            border: 1px solid rgba(71, 85, 105, 0.9);
+            border-radius: 28px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+        }
+
+        .project-hero-card {
+            padding: 42px;
+        }
+
+        .project-side-card {
+            padding: 28px;
+            position: sticky;
+            top: 28px;
+        }
+
+        .project-eyebrow {
+            color: #22D3EE;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        #project-title {
+            margin: 0;
+            color: #F8FAFC;
+            font-size: clamp(42px, 7vw, 86px);
+            line-height: 0.95;
+            letter-spacing: -0.06em;
+            overflow-wrap: anywhere;
+        }
+
+        .project-description {
+            margin: 26px 0 0;
+            color: #CBD5E1;
+            font-size: 19px;
+            line-height: 1.75;
+            max-width: 760px;
+            overflow-wrap: anywhere;
+        }
+
+        .project-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 34px;
+        }
+
+        .project-meta-card {
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(71, 85, 105, 0.8);
+            border-radius: 18px;
+            padding: 18px;
+            min-width: 0;
+        }
+
+        .project-meta-card span,
+        .project-side-card h2 {
+            color: #94A3B8;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .project-meta-card strong {
+            display: block;
+            margin-top: 10px;
+            color: #F8FAFC;
+            font-size: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .project-side-card h2 {
+            margin: 0 0 18px;
+            color: #94A3B8;
+        }
+
+        .project-link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-link-button,
+        .project-score-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            box-sizing: border-box;
+        }
+
+        .project-link-button {
+            color: #22D3EE;
+            border: 1px solid rgba(34, 211, 238, 0.45);
+            background: rgba(34, 211, 238, 0.08);
+            overflow-wrap: anywhere;
+        }
+
+        .project-link-button.is-disabled {
+            color: #64748B;
+            border-color: rgba(100, 116, 139, 0.35);
+            background: rgba(100, 116, 139, 0.08);
+            pointer-events: none;
+        }
+
+        .project-score-button {
+            margin-top: 22px;
+            width: 100%;
+            border: none;
+            background: linear-gradient(135deg, #22D3EE, #A78BFA);
+            color: #0F172A;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .project-back-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #94A3B8;
+            text-decoration: none;
+        }
+
+        @media (max-width: 860px) {
+            .project-view {
+                grid-template-columns: 1fr;
+                margin: 32px auto;
+            }
+
+            .project-side-card {
+                position: static;
+            }
+
+            .project-meta-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="project-page-body">
     <header class="home-header">
         <h1 class="header-site-name"><a class="header-link" href="index.html">CodeJam</a></h1>
         <nav class="header-nav">
@@ -18,24 +183,35 @@
         <a href="login.html" class="register-link">Sign in</a>
     </header>
 
-    <div class="proj-names">
-        <p id="team-name">Loading team...</p>
-        <p id="team-members">Loading members...</p>
-    </div>
+    <main class="project-view">
+        <section class="project-hero-card">
+            <div class="project-eyebrow">CodeJam submission</div>
+            <h1 id="project-title">Loading project...</h1>
+            <p id="description" class="project-description">Loading description...</p>
 
-    <div class="name-and-description">
-        <h1 id="project-title">Loading project...</h1>
-        <p id="description">Loading description...</p>
-    </div>
+            <div class="project-meta-grid">
+                <div class="project-meta-card">
+                    <span>Team / creator</span>
+                    <strong id="team-name">Loading...</strong>
+                </div>
+                <div class="project-meta-card">
+                    <span>Members</span>
+                    <strong id="team-members">Loading...</strong>
+                </div>
+            </div>
+        </section>
 
-    <div class="proj-links">
-        <a id="github-url" target="_blank" rel="noopener noreferrer">Github link: Loading...</a>
-        <a id="project-url" target="_blank" rel="noopener noreferrer">Website link: Loading...</a>
-    </div>
+        <aside class="project-side-card">
+            <h2>Project links</h2>
+            <div class="project-link-list">
+                <a id="github-url" class="project-link-button" target="_blank" rel="noopener noreferrer">Loading GitHub...</a>
+                <a id="project-url" class="project-link-button" target="_blank" rel="noopener noreferrer">Loading website...</a>
+            </div>
 
-    <div class="proj-place-button">
-        <button id="score-button" class="scoring-button button-styling">Score Submission</button>
-    </div>
+            <button id="score-button" class="project-score-button">Score Submission</button>
+            <a class="project-back-link" href="team-leaderboard.html">← Back to leaderboard</a>
+        </aside>
+    </main>
 
     <script src="api.js"></script>
     <script src="project-page.js"></script>
