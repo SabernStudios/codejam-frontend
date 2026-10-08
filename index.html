@@ -6,6 +6,8 @@
     <title>CodeJam</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sharp-theme.css">
+    <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
     <script src="particle-text.js" defer></script>
     <script src="auth-nav.js" defer></script>
@@ -20,39 +22,96 @@
         </nav>
         <a href="login.html" class="register-link">Sign in</a>
     </header>
-    <div class="home-segment-one">
-        <h1 class="big-title-text particle-text" data-text="CodeJam">
-            <span class="particle-text__label">CodeJam</span>
-            <canvas aria-hidden="true"></canvas>
-        </h1>
-    </div>
-    <div class="home-segment-two">
-        <h1 id="countdown-text">Theme Reveal Countdown</h1> 
-        <p id="countdown" role="timer"></p>
-    </div>
+
+    <main class="home-main">
+        <section class="home-segment-one">
+            <h1 class="big-title-text particle-text" data-text="CodeJam">
+                <span class="particle-text__label">CodeJam</span>
+                <canvas aria-hidden="true"></canvas>
+            </h1>
+        </section>
+
+        <section class="home-intro-grid">
+            <div class="codejam-description">
+                <p class="home-eyebrow">Computer Science Honor Society</p>
+                <h2>Build something. Submit it. Compete.</h2>
+                <p>
+                    CodeJam is a schoolwide, GameJam-style coding competition where students create a project based on a revealed theme. You can compete alone or with a team, build in any coding environment, and submit your project before the deadline for judging, community attention, and prizes.
+                </p>
+
+                <div class="home-actions">
+                    <a class="home-action-primary" href="submissions.html">Submit project</a>
+                    <a class="home-action-secondary" href="rules.html">Read rules</a>
+                    <a class="home-action-secondary" href="team-leaderboard.html">View leaderboard</a>
+                </div>
+            </div>
+
+            <aside class="countdown-panel">
+                <div>
+                    <p class="countdown-label">Countdown</p>
+                    <h2 id="countdown-text">Theme reveal starts in</h2>
+                    <p id="countdown" role="timer">Loading...</p>
+                </div>
+
+                <div class="countdown-details">
+                    <p><strong>Theme reveal:</strong> October 13 at club time</p>
+                    <p><strong>Submission deadline:</strong> October 27 at 11:59 PM</p>
+                    <p><strong>Teams:</strong> solo or up to four students</p>
+                </div>
+            </aside>
+        </section>
+
+        <section class="home-info-strip">
+            <div class="home-info-card">
+                <h3>Open-ended projects</h3>
+                <p>Games, apps, websites, tools, simulations, or anything coded that fits the theme.</p>
+            </div>
+            <div class="home-info-card">
+                <h3>Theme-based challenge</h3>
+                <p>The theme is revealed at the start, so everyone builds from the same creative prompt.</p>
+            </div>
+            <div class="home-info-card">
+                <h3>Judged and ranked</h3>
+                <p>Projects can be scored by creativity, functionality, technical effort, presentation, and user experience.</p>
+            </div>
+        </section>
+    </main>
+
     <script>
-        var deadline = new Date("2026-10-13T14:50:00-05:00").getTime();
+        var themeRevealDeadline = new Date("2026-10-13T14:50:00-04:00").getTime();
+        var submissionDeadline = new Date("2026-10-27T23:59:00-04:00").getTime();
         var countdown = document.getElementById("countdown");
+        var countdownText = document.getElementById("countdown-text");
 
-        function updateCountdown() {
-            var remaining = deadline - Date.now();
-
-            if (remaining <= 0) {
-            countdown.textContent = "Submissions are closed!";
-            clearInterval(countdownInterval);
-            return;
-            }
-
+        function formatRemaining(remaining) {
             var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
             var hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
             var minutes = Math.floor((remaining / (1000 * 60)) % 60);
             var seconds = Math.floor((remaining / 1000) % 60);
 
-            countdown.textContent =
-            days + "d " +
-            hours + "h " +
-            minutes + "m " +
-            seconds + "s";
+            return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+        }
+
+        function updateCountdown() {
+            var now = Date.now();
+            var remainingToTheme = themeRevealDeadline - now;
+            var remainingToSubmission = submissionDeadline - now;
+
+            if (remainingToTheme > 0) {
+                countdownText.textContent = "Theme reveal starts in";
+                countdown.textContent = formatRemaining(remainingToTheme);
+                return;
+            }
+
+            if (remainingToSubmission > 0) {
+                countdownText.textContent = "Submissions close in";
+                countdown.textContent = formatRemaining(remainingToSubmission);
+                return;
+            }
+
+            countdownText.textContent = "CodeJam submissions are closed";
+            countdown.textContent = "Good luck.";
+            clearInterval(countdownInterval);
         }
 
         var countdownInterval = setInterval(updateCountdown, 1000);
