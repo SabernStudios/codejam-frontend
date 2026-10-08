@@ -221,15 +221,24 @@
     margin-bottom: 8px;
 }
 
-.leaderboard-pill {
+.leaderboard-pill,
+.leaderboard-participant-type {
     padding: 5px 10px;
     border-radius: 0;
-    background: rgba(167, 139, 250, 0.14);
-    color: #C4B5FD;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+}
+
+.leaderboard-pill {
+    background: rgba(167, 139, 250, 0.14);
+    color: #C4B5FD;
+}
+
+.leaderboard-participant-type {
+    background: rgba(34, 211, 238, 0.12);
+    color: #22D3EE;
 }
 
 .leaderboard-team {
