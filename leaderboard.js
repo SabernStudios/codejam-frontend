@@ -19,6 +19,7 @@ function normalizeScoredItem(item) {
     category: item.category,
     total_score: item.total_score,
     number_of_scores: scoreCount,
+    likes: 0,
     is_scored: scoreCount > 0
   };
 }
@@ -31,8 +32,37 @@ function normalizeSubmission(item) {
     category: item.category,
     total_score: null,
     number_of_scores: 0,
+    likes: 0,
     is_scored: false
   };
+}
+
+async function addLikeCounts(items) {
+  const itemsWithLikes = await Promise.all(
+    items.map(async function (item) {
+      try {
+        const response = await fetch(`${API_BASE_URL}/submissions/${encodeURIComponent(item.submission_id)}/likes`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || "Could not load likes.");
+        }
+
+        return {
+          ...item,
+          likes: data.likes ?? 0
+        };
+      } catch (error) {
+        console.error(`Could not load likes for submission ${item.submission_id}:`, error);
+        return {
+          ...item,
+          likes: 0
+        };
+      }
+    })
+  );
+
+  return itemsWithLikes;
 }
 
 function sortItems(items) {
@@ -84,6 +114,7 @@ function renderLeaderboard() {
     const scoreSubtext = item.is_scored
       ? `${item.number_of_scores} judge score${item.number_of_scores === 1 ? "" : "s"}`
       : "Awaiting judging";
+    const likeText = `${item.likes ?? 0} like${(item.likes ?? 0) === 1 ? "" : "s"}`;
 
     const card = document.createElement("article");
     card.className = "leaderboard-card";
@@ -95,6 +126,7 @@ function renderLeaderboard() {
         <div class="leaderboard-card-topline">
           <span class="leaderboard-pill">${escapeHtml(item.category || "General")}</span>
           <span class="leaderboard-team">${escapeHtml(item.team_name || "Unknown team")}</span>
+          <span class="leaderboard-likes">♥ ${escapeHtml(likeText)}</span>
         </div>
         <h3>${escapeHtml(item.project_title || "Untitled Project")}</h3>
         <a class="leaderboard-view-link" href="project-page.html?submission_id=${encodeURIComponent(item.submission_id)}">
@@ -145,7 +177,7 @@ async function loadLeaderboard() {
       })
       .map(normalizeSubmission);
 
-    leaderboardItems = scoredItems.concat(unscoredItems);
+    leaderboardItems = await addLikeCounts(scoredItems.concat(unscoredItems));
     renderLeaderboard();
   } catch (error) {
     console.error(error);
