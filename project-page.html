@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeJam</title>
     <link rel="stylesheet" href="style.css">
+    <script src="auth-nav.js" defer></script>
 </head>
 <body>
     <header class="home-header">
@@ -18,83 +19,25 @@
     </header>
 
     <div class="proj-names">
-        <p id="team-name">Project Name: sample-proj</p>
-        <p id="team-members">Team members: bob</p>
+        <p id="team-name">Loading team...</p>
+        <p id="team-members">Loading members...</p>
     </div>
 
     <div class="name-and-description">
-        <h1 id="project-title">Project Name: sample-proj</h1>
-        <p id="description">mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+        <h1 id="project-title">Loading project...</h1>
+        <p id="description">Loading description...</p>
     </div>
 
     <div class="proj-links">
-        <a id="github-url">Github link: https://github.com/astran123258/example-repo</a>
-        <a id="project-url">Website link: N/A</a>
+        <a id="github-url" target="_blank" rel="noopener noreferrer">Github link: Loading...</a>
+        <a id="project-url" target="_blank" rel="noopener noreferrer">Website link: Loading...</a>
     </div>
 
     <div class="proj-place-button">
-        <button class="scoring-button button-styling">Score Submission</button>
+        <button id="score-button" class="scoring-button button-styling">Score Submission</button>
     </div>
-    
-    <script>
-        const submissionId = new URLSearchParams(window.location.search)
-            .get("submission_id");
 
-        async function loadSubmission() {
-            if (!submissionId) {
-            document.getElementById("project-title").textContent =
-                "No submission ID provided";
-            return;
-            }
-
-            try {
-            // Replace this path with the endpoint your backend provides.
-            const response = await fetch(
-                `/api/submissions/${encodeURIComponent(submissionId)}`
-            );
-
-            if (!response.ok) {
-                throw new Error("Submission could not be loaded");
-            }
-
-            const submission = await response.json();
-
-            document.getElementById("team-name").textContent =
-                `Project Name: ${submission.project_name ?? ""}`;
-
-            document.getElementById("team-members").textContent =
-                `Team members: ${Array.isArray(submission.team_members)
-                ? submission.team_members.join(", ")
-                : submission.team_members ?? ""}`;
-
-            document.getElementById("project-title").textContent =
-                submission.project_name ?? "";
-
-            document.getElementById("description").textContent =
-                submission.description ?? "";
-
-            const githubLink = document.getElementById("github-url");
-            githubLink.textContent = submission.github_url
-                ? `Github link: ${submission.github_url}`
-                : "Github link: N/A";
-            if (submission.github_url) githubLink.href = submission.github_url;
-
-            const projectLink = document.getElementById("project-url");
-            projectLink.textContent = submission.project_url
-                ? `Website link: ${submission.project_url}`
-                : "Website link: N/A";
-            if (submission.project_url) projectLink.href = submission.project_url;
-            } catch (error) {
-            document.getElementById("project-title").textContent =
-                "Could not load this submission";
-            console.error(error);
-            }
-        }
-
-        loadSubmission();
-    </script>
-
-
-
+    <script src="api.js"></script>
+    <script src="project-page.js"></script>
 </body>
 </html>
