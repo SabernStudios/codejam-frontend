@@ -21,7 +21,7 @@
 
     <form class="submit-space" id="project-form">
         <h1 class="large-text">Submit</h1>
-        <label for="project_title">Enter your project title:</label> <br>
+        <label for="project-title">Enter your project title:</label> <br>
         <input
             type="text"
             id="project-title"
@@ -46,9 +46,8 @@
             handleInput();
         </script>
 
-        <label for="description">Enter a short description (300 chracters max):</label> <br>
+        <label for="description">Enter a short description (300 characters max):</label> <br>
         <textarea
-            type="text"
             id="description"
             name="description"
             required
@@ -61,13 +60,25 @@
         <br>
         <br>
 
+        <label for="contact-email">Enter your contact email:</label> <br>
+        <input
+            type="email"
+            id="contact-email"
+            name="contact_email"
+            required
+            placeholder="student@example.com"
+            maxlength="100"/>
+
+        <br>
+        <br>
+        <br>
+
         <label for="project-url">Enter your project link, if you have a website for it (optional):</label> <br>
         <input
-            type="text"
+            type="url"
             id="project-url"
             name="project_url"
             placeholder="https://example.com"
-            minlength="2"
             maxlength="100"/>
 
         <br>
@@ -87,7 +98,7 @@
 
         <label for="github-url">Enter your GitHub repository link: </label> <br>
         <input
-            type="text"
+            type="url"
             id="github-url"
             name="github_url"
             required
@@ -109,17 +120,10 @@
         <br>
         <br>
 
-
         <button class="button-styling" type="submit">Submit</button>
-
-        <script>
-            var projectForm = document.getElementById("project-form");
-
-            projectForm.addEventListener("submit", function(event) {
-                event.preventDefault();
-                window.location.href = "index.html";
-            });
-        </script>
     </form>
+
+    <script src="api.js"></script>
+    <script src="submissions.js"></script>
 </body>
 </html>
