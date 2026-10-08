@@ -28,20 +28,60 @@
                 <p class="submission-eyebrow">CodeJam submission</p>
                 <h1>Submit your project.</h1>
                 <p class="submission-intro-text">
-                    Send in your CodeJam project before the deadline. Make sure your repository is public or accessible to judges.
+                    Submit as an individual or as a team of up to four. The leaderboard will show the project, submitter type, team or creator name, score, and community likes.
                 </p>
 
                 <ul class="submission-checklist">
-                    <li>Use a clear project title.</li>
-                    <li>Write a description that explains what the project does.</li>
+                    <li>Choose individual or team before submitting.</li>
+                    <li>Teams need 2–4 members listed one per line.</li>
+                    <li>Use a clear project title and description.</li>
                     <li>Include a working GitHub repository link.</li>
-                    <li>Add a live website link if your project has one.</li>
                 </ul>
             </section>
 
             <section class="submission-form-card">
                 <form class="submit-space" id="project-form">
                     <h2>Project details</h2>
+
+                    <fieldset class="submission-field submission-choice-field">
+                        <legend>Submission type</legend>
+                        <div class="submission-choice-grid">
+                            <label class="submission-choice">
+                                <input type="radio" name="participant_type" value="individual" checked>
+                                <span>Individual</span>
+                            </label>
+                            <label class="submission-choice">
+                                <input type="radio" name="participant_type" value="team">
+                                <span>Team</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="submission-field">
+                        <label id="team-name-label" for="team-name">Creator display name</label>
+                        <p id="team-name-help" class="submission-help">This is what appears on the leaderboard.</p>
+                        <input
+                            type="text"
+                            id="team-name"
+                            name="team_name"
+                            required
+                            placeholder="Your name or username"
+                            minlength="2"
+                            maxlength="80"/>
+                    </div>
+
+                    <div class="submission-field" id="team-members-field">
+                        <label id="team-members-label" for="team-members">Participant name</label>
+                        <p id="team-members-help" class="submission-help">For individuals, list only yourself. For teams, list 2–4 members, one per line.</p>
+                        <textarea
+                            id="team-members"
+                            name="team_members"
+                            required
+                            placeholder="Your name"
+                            rows="3"
+                            minlength="2"
+                            maxlength="240"></textarea>
+                    </div>
 
                     <div class="submission-field">
                         <label for="project-title">Project title</label>
