@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="sharp-theme.css">
     <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
+    <script src="particle-text.js" defer></script>
     <script src="auth-nav.js" defer></script>
 </head>
 <body class="home-body">
@@ -26,7 +27,10 @@
         <section class="home-segment-one">
             <div class="home-hero-copy">
                 <p class="home-school-line">Orlando Science Computer Science Honor Society</p>
-                <h1>CodeJam</h1>
+                <h1 class="home-particle-title particle-text" data-text="CodeJam">
+                    <span class="particle-text__label">CodeJam</span>
+                    <canvas aria-hidden="true"></canvas>
+                </h1>
                 <p class="home-hero-subtitle">A schoolwide coding challenge for builders at OSHS.</p>
             </div>
         </section>
