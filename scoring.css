@@ -1,0 +1,272 @@
+.scoring-page {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto 80px;
+    font-family: 'Inter', sans-serif;
+}
+
+.scoring-hero {
+    margin-top: 52px;
+    padding: 48px 0 28px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.scoring-eyebrow,
+.panel-label {
+    margin: 0 0 10px;
+    color: #22D3EE;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.scoring-hero h1 {
+    margin: 0;
+    color: #F8FAFC;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.92;
+    letter-spacing: -0.06em;
+}
+
+.scoring-status {
+    max-width: 720px;
+    margin: 20px 0 0;
+    color: #CBD5E1;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.scoring-grid {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+    align-items: start;
+}
+
+.submission-preview,
+.score-panel,
+.previous-scores-panel {
+    background: rgba(30, 41, 59, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.22);
+}
+
+.submission-preview {
+    padding: 28px;
+    position: sticky;
+    top: 24px;
+}
+
+.submission-preview h2,
+.score-panel h2,
+.previous-scores-panel h2 {
+    margin: 0;
+    color: #F8FAFC;
+}
+
+.submission-preview h2 {
+    font-size: 34px;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    overflow-wrap: anywhere;
+}
+
+.project-team {
+    margin: 16px 0 0;
+    color: #22D3EE;
+    font-weight: 700;
+}
+
+.project-description {
+    margin: 18px 0 0;
+    color: #CBD5E1;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.submission-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.submission-links a,
+.secondary-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid rgba(34, 211, 238, 0.48);
+    color: #22D3EE;
+    text-decoration: none;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.submission-links a.is-disabled {
+    color: #64748B;
+    border-color: rgba(100, 116, 139, 0.45);
+    pointer-events: none;
+}
+
+.score-panel {
+    padding: 28px;
+}
+
+.score-panel-header,
+.previous-scores-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: flex-start;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.score-panel-header h2 {
+    font-size: 34px;
+}
+
+.score-form {
+    display: grid;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.score-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 92px;
+    gap: 20px;
+    align-items: center;
+    padding: 18px;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.score-row-large {
+    border-color: rgba(34, 211, 238, 0.35);
+}
+
+.score-row label span,
+.comments-label {
+    display: block;
+    color: #F8FAFC;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.score-row label small {
+    display: block;
+    margin-top: 6px;
+    color: #94A3B8;
+    line-height: 1.45;
+}
+
+.score-row input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    background: #0F172A;
+    color: #F8FAFC;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.comments-label {
+    margin-top: 8px;
+}
+
+#comments {
+    width: 100%;
+    min-height: 120px;
+    padding: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: #0F172A;
+    color: #E2E8F0;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.submit-score-button {
+    width: 100%;
+    min-height: 54px;
+    border: 0;
+    background: linear-gradient(135deg, #22D3EE, #A78BFA);
+    color: #0F172A;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.previous-scores-panel {
+    margin-top: 24px;
+    padding: 28px;
+}
+
+.score-average {
+    margin: 0;
+    color: #22D3EE;
+    font-weight: 800;
+}
+
+.previous-scores-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.previous-score-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 18px;
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.previous-score-card h3 {
+    margin: 0 0 8px;
+    color: #F8FAFC;
+}
+
+.previous-score-card p {
+    margin: 0;
+    color: #94A3B8;
+    line-height: 1.5;
+}
+
+.previous-score-total {
+    color: #22D3EE;
+    font-size: 22px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+    .scoring-page {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .scoring-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .submission-preview {
+        position: static;
+    }
+
+    .score-panel-header,
+    .previous-scores-header {
+        flex-direction: column;
+    }
+
+    .score-row {
+        grid-template-columns: 1fr;
+    }
+}
