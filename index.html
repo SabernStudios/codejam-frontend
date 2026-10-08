@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="sharp-theme.css">
     <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=2">
-    <script src="particle-text.js" defer></script>
     <script src="auth-nav.js" defer></script>
 </head>
 <body class="home-body">
@@ -25,18 +24,22 @@
 
     <main class="home-main">
         <section class="home-segment-one">
-            <h1 class="big-title-text particle-text" data-text="CodeJam">
-                <span class="particle-text__label">CodeJam</span>
-                <canvas aria-hidden="true"></canvas>
-            </h1>
+            <div class="home-hero-copy">
+                <p class="home-school-line">Orlando Science Computer Science Honor Society</p>
+                <h1>CodeJam</h1>
+                <p class="home-hero-subtitle">A schoolwide coding challenge for builders at OSHS.</p>
+            </div>
         </section>
 
         <section class="home-intro-grid">
             <div class="codejam-description">
-                <p class="home-eyebrow">Computer Science Honor Society</p>
-                <h2>Build something. Submit it. Compete.</h2>
+                <p class="home-eyebrow">What is CodeJam?</p>
+                <h2>Make a project around one shared theme.</h2>
                 <p>
-                    CodeJam is a schoolwide, GameJam-style coding competition where students create a project based on a revealed theme. You can compete alone or with a team, build in any coding environment, and submit your project before the deadline for judging, community attention, and prizes.
+                    CodeJam is CSHS's schoolwide coding competition. When the theme is announced, students build a game, app, website, tool, simulation, or other coded project that responds to it. You can work solo or with a team of up to four students.
+                </p>
+                <p>
+                    The goal is simple: make something real, submit it on time, and show the school what you built.
                 </p>
 
                 <div class="home-actions">
@@ -48,7 +51,7 @@
 
             <aside class="countdown-panel">
                 <div>
-                    <p class="countdown-label">Countdown</p>
+                    <p class="countdown-label">Event countdown</p>
                     <h2 id="countdown-text">Theme reveal starts in</h2>
                     <p id="countdown" role="timer">Loading...</p>
                 </div>
@@ -63,16 +66,16 @@
 
         <section class="home-info-strip">
             <div class="home-info-card">
-                <h3>Open-ended projects</h3>
-                <p>Games, apps, websites, tools, simulations, or anything coded that fits the theme.</p>
+                <h3>Build in your style</h3>
+                <p>Use the language, engine, or platform that makes sense for your idea.</p>
             </div>
             <div class="home-info-card">
-                <h3>Theme-based challenge</h3>
-                <p>The theme is revealed at the start, so everyone builds from the same creative prompt.</p>
+                <h3>Keep it student-made</h3>
+                <p>AI tools can help, but you should understand and be able to explain your code.</p>
             </div>
             <div class="home-info-card">
-                <h3>Judged and ranked</h3>
-                <p>Projects can be scored by creativity, functionality, technical effort, presentation, and user experience.</p>
+                <h3>Win judged and community awards</h3>
+                <p>Judges score projects, and students can like their favorite submissions.</p>
             </div>
         </section>
     </main>
