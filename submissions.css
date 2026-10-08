@@ -90,8 +90,42 @@
     gap: 8px;
 }
 
-.submission-field label {
+.submission-field label,
+.submission-choice-field legend {
     color: #E2E8F0;
+    font-weight: 700;
+}
+
+.submission-choice-field {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.submission-choice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.submission-choice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid rgba(34, 211, 238, 0.42);
+    background: rgba(15, 23, 42, 0.82);
+    cursor: pointer;
+}
+
+.submission-choice input {
+    width: auto;
+    margin: 0;
+    accent-color: #22D3EE;
+}
+
+.submission-choice span {
+    color: #F8FAFC;
     font-weight: 700;
 }
 
@@ -124,6 +158,10 @@
     resize: vertical;
 }
 
+#team-members {
+    min-height: 88px;
+}
+
 .submission-submit-button {
     width: 100%;
     min-height: 48px;
@@ -146,5 +184,11 @@
     .submission-intro,
     .submission-form-card {
         padding: 28px;
+    }
+}
+
+@media (max-width: 520px) {
+    .submission-choice-grid {
+        grid-template-columns: 1fr;
     }
 }
