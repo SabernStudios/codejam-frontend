@@ -58,7 +58,7 @@
                     <p class="countdown-label">Event countdown</p>
                     <h2 id="countdown-text">Theme reveal starts in</h2>
                     <p id="countdown" role="timer">Loading...</p>
-                    <p id="theme-subtext" class="theme-reveal-subtext" hidden>Remember, this is open-ended for a reason.</p>
+                    <p id="theme-subtext" class="theme-reveal-subtext" hidden></p>
                 </div>
 
                 <div class="countdown-details">
@@ -85,11 +85,16 @@
         </section>
     </main>
 
+    <script src="api.js"></script>
     <script>
-        var themeRevealDeadline = new Date("2026-10-13T14:50:00-04:00").getTime();
+        var fallbackThemeRevealDeadline = new Date("2026-10-13T14:50:00-04:00").getTime();
+        var themeRevealDeadline = fallbackThemeRevealDeadline;
         var countdown = document.getElementById("countdown");
         var countdownText = document.getElementById("countdown-text");
         var themeSubtext = document.getElementById("theme-subtext");
+        var countdownInterval;
+        var themeRequestInProgress = false;
+        var themeHasBeenRevealed = false;
 
         function formatRemaining(remaining) {
             var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
@@ -100,13 +105,68 @@
             return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
         }
 
-        function revealTheme() {
-            countdownText.textContent = "Theme: A New Twist";
+        function showPendingReveal() {
+            countdownText.textContent = "Checking theme reveal...";
+            countdown.hidden = false;
+            countdown.textContent = "Opening soon";
+            themeSubtext.hidden = true;
+        }
+
+        function revealTheme(theme, subtext) {
+            themeHasBeenRevealed = true;
+            countdownText.textContent = "Theme: " + theme;
             countdown.hidden = true;
-            themeSubtext.hidden = false;
+
+            if (subtext) {
+                themeSubtext.textContent = subtext;
+                themeSubtext.hidden = false;
+            } else {
+                themeSubtext.textContent = "";
+                themeSubtext.hidden = true;
+            }
+
+            clearInterval(countdownInterval);
+        }
+
+        async function loadThemeStatus() {
+            if (themeRequestInProgress || themeHasBeenRevealed) {
+                return;
+            }
+
+            themeRequestInProgress = true;
+
+            try {
+                var response = await fetch(`${API_BASE_URL}/event/theme`, {
+                    cache: "no-store"
+                });
+                var data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || "Could not load theme reveal status.");
+                }
+
+                if (data.reveal_at) {
+                    themeRevealDeadline = new Date(data.reveal_at).getTime();
+                }
+
+                if (data.revealed && data.theme) {
+                    revealTheme(data.theme, data.subtext);
+                    return;
+                }
+
+                updateCountdown();
+            } catch (error) {
+                console.error(error);
+            } finally {
+                themeRequestInProgress = false;
+            }
         }
 
         function updateCountdown() {
+            if (themeHasBeenRevealed) {
+                return;
+            }
+
             var now = Date.now();
             var remainingToTheme = themeRevealDeadline - now;
 
@@ -118,11 +178,12 @@
                 return;
             }
 
-            revealTheme();
-            clearInterval(countdownInterval);
+            showPendingReveal();
+            loadThemeStatus();
         }
 
-        var countdownInterval = setInterval(updateCountdown, 1000);
+        loadThemeStatus();
+        countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
 </body>
