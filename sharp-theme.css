@@ -64,3 +64,30 @@ select,
 .rule-details {
   border-radius: 0 !important;
 }
+
+@media (max-width: 760px) {
+  .home-header .header-nav,
+  .header-nav {
+    grid-template-columns: repeat(auto-fit, minmax(68px, 1fr)) !important;
+  }
+
+  .home-header .header-nav > a,
+  .header-nav a {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-header .header-nav,
+  .header-nav {
+    grid-template-columns: repeat(auto-fit, minmax(62px, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .home-header .header-nav > a,
+  .header-nav a {
+    font-size: 11px !important;
+  }
+}
