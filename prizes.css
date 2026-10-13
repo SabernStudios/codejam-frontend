@@ -1,0 +1,138 @@
+.prize-page-body {
+    min-height: 100vh;
+    background: #0F172A;
+}
+
+.prize-page {
+    width: min(1120px, calc(100% - 48px));
+    margin: 42px auto 90px;
+    font-family: 'Inter', sans-serif;
+}
+
+.prize-hero,
+.prize-card {
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: #111827;
+}
+
+.prize-hero {
+    padding: 42px;
+    border-left: 5px solid #22D3EE;
+}
+
+.prize-eyebrow,
+.prize-rank {
+    color: #22D3EE;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.prize-eyebrow {
+    margin: 0 0 14px;
+}
+
+.prize-hero h1 {
+    margin: 0;
+    color: #F8FAFC;
+    font-size: clamp(52px, 9vw, 104px);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+}
+
+.prize-hero p {
+    max-width: 760px;
+    margin: 22px 0 0;
+    color: #CBD5E1;
+    font-size: 19px;
+    line-height: 1.65;
+}
+
+.prize-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.prize-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border: 1px solid rgba(34, 211, 238, 0.55);
+    color: #22D3EE;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.prize-actions a:first-child {
+    background: #22D3EE;
+    color: #0F172A;
+}
+
+.prize-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.prize-card {
+    padding: 28px;
+}
+
+.prize-card-first {
+    border-left: 5px solid #22D3EE;
+}
+
+.prize-card-wide {
+    grid-column: 1 / -1;
+}
+
+.prize-card h2 {
+    margin: 14px 0 0;
+    color: #F8FAFC;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1;
+    letter-spacing: -0.045em;
+}
+
+.prize-card ul {
+    display: grid;
+    gap: 10px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.prize-card li {
+    padding-left: 14px;
+    border-left: 3px solid #22D3EE;
+    color: #E2E8F0;
+    line-height: 1.45;
+}
+
+.prize-card p {
+    margin: 22px 0 0;
+    color: #94A3B8;
+    line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+    .prize-page {
+        width: min(100% - 28px, 1120px);
+        margin-top: 28px;
+    }
+
+    .prize-hero,
+    .prize-card {
+        padding: 26px;
+    }
+
+    .prize-grid {
+        grid-template-columns: 1fr;
+    }
+}
