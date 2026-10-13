@@ -58,6 +58,7 @@
                     <p class="countdown-label">Event countdown</p>
                     <h2 id="countdown-text">Theme reveal starts in</h2>
                     <p id="countdown" role="timer">Loading...</p>
+                    <p id="theme-subtext" class="theme-reveal-subtext" hidden>Remember, this is open-ended for a reason.</p>
                 </div>
 
                 <div class="countdown-details">
@@ -86,9 +87,9 @@
 
     <script>
         var themeRevealDeadline = new Date("2026-10-13T14:50:00-04:00").getTime();
-        var submissionDeadline = new Date("2026-10-27T23:59:00-04:00").getTime();
         var countdown = document.getElementById("countdown");
         var countdownText = document.getElementById("countdown-text");
+        var themeSubtext = document.getElementById("theme-subtext");
 
         function formatRemaining(remaining) {
             var days = Math.floor(remaining / (1000 * 60 * 60 * 24));
@@ -99,25 +100,25 @@
             return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
         }
 
+        function revealTheme() {
+            countdownText.textContent = "Theme: A New Twist";
+            countdown.hidden = true;
+            themeSubtext.hidden = false;
+        }
+
         function updateCountdown() {
             var now = Date.now();
             var remainingToTheme = themeRevealDeadline - now;
-            var remainingToSubmission = submissionDeadline - now;
 
             if (remainingToTheme > 0) {
                 countdownText.textContent = "Theme reveal starts in";
+                countdown.hidden = false;
+                themeSubtext.hidden = true;
                 countdown.textContent = formatRemaining(remainingToTheme);
                 return;
             }
 
-            if (remainingToSubmission > 0) {
-                countdownText.textContent = "Submissions close in";
-                countdown.textContent = formatRemaining(remainingToSubmission);
-                return;
-            }
-
-            countdownText.textContent = "CodeJam submissions are closed";
-            countdown.textContent = "Good luck.";
+            revealTheme();
             clearInterval(countdownInterval);
         }
 
