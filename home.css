@@ -224,6 +224,19 @@
     line-height: 1.65;
 }
 
+.home-prize-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    margin-top: 22px;
+    padding: 0 18px;
+    border: 1px solid rgba(34, 211, 238, 0.55);
+    color: #22D3EE;
+    text-decoration: none;
+    font-weight: 800;
+}
+
 .home-prize-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
