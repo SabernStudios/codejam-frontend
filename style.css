@@ -755,3 +755,101 @@ input[type="email"]{
 .scoring-button {
     width: 150px;
 }
+
+@media (max-width: 720px) {
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .home-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "brand auth"
+            "nav nav";
+        gap: 10px 12px;
+        align-items: center;
+        padding: 12px 14px 10px;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    }
+
+    .header-site-name {
+        grid-area: brand;
+        margin: 0;
+        font-size: 22px;
+        line-height: 1;
+        min-width: 0;
+    }
+
+    .register-link {
+        grid-area: auth;
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        justify-self: end;
+        white-space: nowrap;
+    }
+
+    .home-header .header-nav,
+    .header-nav {
+        grid-area: nav;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+        justify-content: stretch;
+        align-items: stretch;
+    }
+
+    .home-header .header-nav > a,
+    .header-nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 0 8px;
+        border: 1px solid rgba(34, 211, 238, 0.38);
+        box-sizing: border-box;
+        color: #22D3EE;
+        font-size: 13px;
+        font-weight: 800;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .big-text,
+    .large-text {
+        font-size: clamp(48px, 15vw, 78px);
+    }
+}
+
+@media (max-width: 380px) {
+    .home-header {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .home-header .header-nav,
+    .header-nav {
+        gap: 6px;
+    }
+
+    .home-header .header-nav > a,
+    .header-nav a {
+        min-height: 36px;
+        padding: 0 5px;
+        font-size: 12px;
+    }
+
+    .header-site-name {
+        font-size: 20px;
+    }
+
+    .register-link {
+        font-size: 13px;
+    }
+}
