@@ -154,6 +154,14 @@
     letter-spacing: -0.05em;
 }
 
+.theme-reveal-subtext {
+    margin: 18px 0 0;
+    color: #22D3EE;
+    font-size: clamp(19px, 3vw, 28px);
+    line-height: 1.35;
+    font-weight: 800;
+}
+
 .countdown-details {
     display: grid;
     gap: 10px;
