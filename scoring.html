@@ -22,7 +22,16 @@
         <a href="login.html" class="register-link">Sign in</a>
     </header>
 
-    <main class="scoring-page">
+    <main id="scoring-access-gate" class="scoring-page">
+        <section class="scoring-hero">
+            <p class="scoring-eyebrow">Judge panel</p>
+            <h1 id="scoring-access-title">Checking access...</h1>
+            <p id="scoring-access-description" class="scoring-status" role="status" aria-live="polite">Verifying your account permissions.</p>
+            <p><a class="secondary-link" href="team-leaderboard.html">Back to leaderboard</a></p>
+        </section>
+    </main>
+
+    <main id="scoring-panel" class="scoring-page" hidden>
         <section class="scoring-hero">
             <p class="scoring-eyebrow">Judge panel</p>
             <h1>Score Submission</h1>
