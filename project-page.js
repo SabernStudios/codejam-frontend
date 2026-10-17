@@ -139,13 +139,6 @@ async function loadProject() {
     setLinkState(document.getElementById("github-url"), "Open GitHub Repository", data.github_url);
     setLinkState(document.getElementById("project-url"), "Open Project Website", data.project_url);
 
-    const scoreButton = document.getElementById("score-button");
-    if (scoreButton) {
-      scoreButton.addEventListener("click", function () {
-        window.location.href = `scoring.html?submission_id=${encodeURIComponent(submissionId)}`;
-      });
-    }
-
     const likeButton = document.getElementById("like-button");
     if (likeButton) {
       likeButton.addEventListener("click", toggleLike);
@@ -165,4 +158,29 @@ async function loadProject() {
   }
 }
 
+async function configureScoringButton() {
+  const button = document.getElementById("score-button");
+  const token = localStorage.getItem("token");
+  if (!button || !token || !submissionId) return;
+
+  // Never trust the role in localStorage; the backend verifies the current user.
+  try {
+    const response = await fetch(`${API_BASE_URL}/me`, {
+      headers: { "Authorization": `Bearer ${token}` },
+      cache: "no-store"
+    });
+    if (!response.ok) return;
+    const user = await response.json();
+    if (user.role !== "judge" && user.role !== "admin") return;
+
+    button.hidden = false;
+    button.addEventListener("click", function () {
+      window.location.href = `scoring.html?submission_id=${encodeURIComponent(submissionId)}`;
+    });
+  } catch (error) {
+    console.error("Could not verify judge access:", error);
+  }
+}
+
 loadProject();
+configureScoringButton();
