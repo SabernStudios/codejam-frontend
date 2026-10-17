@@ -2,10 +2,6 @@ const scoringToken = localStorage.getItem("token");
 const scoringParams = new URLSearchParams(window.location.search);
 const scoringSubmissionId = scoringParams.get("submission_id");
 
-if (!scoringToken) {
-  window.location.href = "login.html";
-}
-
 const scoreInputs = [
   document.getElementById("creativity"),
   document.getElementById("functionality"),
@@ -94,7 +90,10 @@ async function loadPreviousScores() {
     return;
   }
 
-  const response = await fetch(`${API_BASE_URL}/scores/submission/${encodeURIComponent(scoringSubmissionId)}`);
+  const response = await fetch(`${API_BASE_URL}/scores/submission/${encodeURIComponent(scoringSubmissionId)}`, {
+    headers: { "Authorization": `Bearer ${scoringToken}` },
+    cache: "no-store"
+  });
   const scores = await response.json();
 
   if (!response.ok) {
@@ -183,6 +182,59 @@ document.getElementById("score-form").addEventListener("submit", async function 
   await loadPreviousScores();
 });
 
-updateTotalScore();
-loadSubmissionForScoring();
-loadPreviousScores();
+function setScoringAccessMessage(title, detail) {
+  document.getElementById("scoring-panel").hidden = true;
+  document.getElementById("scoring-access-gate").hidden = false;
+  document.getElementById("scoring-access-title").textContent = title;
+  document.getElementById("scoring-access-description").textContent = detail;
+}
+
+async function initializeScoringPage() {
+  // The full rubric stays hidden until the server confirms this account's role.
+  if (!scoringToken) {
+    setScoringAccessMessage("Sign in required", "Only judges and administrators can access the scoring panel. Sign in with an authorized account.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/me`, {
+      headers: { "Authorization": `Bearer ${scoringToken}` },
+      cache: "no-store"
+    });
+
+    if (response.status === 401) {
+      setScoringAccessMessage("Session expired", "Sign in again with your judge or administrator account to score projects.");
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error("Account verification failed.");
+    }
+
+    const user = await response.json();
+    if (user.role !== "judge" && user.role !== "admin") {
+      setScoringAccessMessage("Access denied", "Scoring is reserved for CodeJam judges and administrators.");
+      return;
+    }
+
+    document.getElementById("scoring-access-gate").hidden = true;
+    document.getElementById("scoring-panel").hidden = false;
+    updateTotalScore();
+
+    const results = await Promise.allSettled([
+      loadSubmissionForScoring(),
+      loadPreviousScores()
+    ]);
+    results.forEach(function (result) {
+      if (result.status === "rejected") {
+        console.error("Could not load judge data:", result.reason);
+        document.getElementById("scoring-status").textContent = "Could not load project or score details. Please try refreshing.";
+      }
+    });
+  } catch (error) {
+    console.error("Judge verification error:", error);
+    setScoringAccessMessage("Could not verify access", "Please refresh or try again later. Scoring remains unavailable until your permissions are verified.");
+  }
+}
+
+initializeScoringPage();
