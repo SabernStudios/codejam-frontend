@@ -191,6 +191,10 @@
             line-height: 1.5;
         }
 
+        #score-button[hidden] {
+            display: none !important;
+        }
+
         .project-score-button {
             margin-top: 22px;
             width: 100%;
@@ -270,7 +274,7 @@
                 <p id="like-message" class="project-like-message">Loading like status...</p>
             </div>
 
-            <button id="score-button" class="project-score-button">Score Submission</button>
+            <button id="score-button" class="project-score-button" hidden>Score Submission</button>
             <a class="project-back-link" href="team-leaderboard.html">← Back to leaderboard</a>
         </aside>
     </main>
