@@ -60,8 +60,60 @@ participantTypeInputs.forEach(function (input) {
 
 updateParticipantFields();
 
+// A server-side check is authoritative; the browser timer is just immediate UI feedback.
+const submissionsCloseAt = Date.parse("2026-10-28T00:00:00-04:00");
+const deadlineStatus = document.getElementById("submission-deadline-status");
+const submitButton = projectForm.querySelector('button[type="submit"]');
+let deadlineClockOffsetMs = 0;
+let submissionsClosedByServer = false;
+
+function submissionsAreClosed() {
+  return submissionsClosedByServer || (Date.now() + deadlineClockOffsetMs >= submissionsCloseAt);
+}
+
+function refreshDeadlineDisplay() {
+  const closed = submissionsAreClosed();
+  submitButton.disabled = closed;
+  submitButton.textContent = closed ? "Submissions closed" : "Submit project";
+  deadlineStatus.classList.toggle("is-closed", closed);
+  deadlineStatus.textContent = closed
+    ? "Submissions are closed. The deadline was October 27 at 11:59 PM Eastern."
+    : "Submissions close October 27 at 11:59 PM Eastern. Entries must be received before 12:00 AM on October 28.";
+}
+
+async function loadSubmissionDeadline() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/event/submissions-status`, {
+      cache: "no-store"
+    });
+    if (!response.ok) throw new Error("Could not verify submission deadline.");
+    const status = await response.json();
+    const serverTime = Date.parse(status.server_time);
+    if (Number.isFinite(serverTime)) {
+      deadlineClockOffsetMs = serverTime - Date.now();
+    }
+    if (status.open === false) {
+      submissionsClosedByServer = true;
+    }
+  } catch (error) {
+    // The backend still enforces the deadline if the status check fails.
+    console.warn("Submission deadline status unavailable:", error);
+  }
+  refreshDeadlineDisplay();
+}
+
+refreshDeadlineDisplay();
+loadSubmissionDeadline();
+setInterval(refreshDeadlineDisplay, 1000);
+
 projectForm.addEventListener("submit", async function (event) {
   event.preventDefault();
+
+  if (submissionsAreClosed()) {
+    refreshDeadlineDisplay();
+    alert("CodeJam submissions closed at midnight Eastern on October 28, 2026.");
+    return;
+  }
 
   const participantType = getParticipantType();
   const teamName = teamNameInput.value.trim();
