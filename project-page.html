@@ -60,12 +60,20 @@
             overflow-wrap: anywhere;
         }
 
-        .project-description {
+        /* Override the fixed-size #description styling used by submission forms.
+           Project descriptions are paragraphs and must grow with their text. */
+        #description.project-description {
+            width: 100%;
+            max-width: 760px;
+            height: auto;
+            min-height: 0;
             margin: 26px 0 0;
+            padding: 0;
+            box-sizing: border-box;
             color: #CBD5E1;
             font-size: 19px;
             line-height: 1.75;
-            max-width: 760px;
+            white-space: pre-wrap;
             overflow-wrap: anywhere;
         }
 
